@@ -5,6 +5,7 @@ import { HttpLink } from 'apollo-link-http'
 import { ApolloProvider } from 'react-apollo'
 import { BrowserRouter as Router, Route, Link, HashRouter } from "react-router-dom"
 
+import 'semantic-ui-css/semantic.min.css'
 import './index.css';
 
 import App from './App';
