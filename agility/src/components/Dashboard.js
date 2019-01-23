@@ -12,17 +12,15 @@ class Dashboard extends React.Component {
             <div>
                 <SideNav />
                 <main>
-                        <Grid columns={2} divided style={{ marginLeft: "6%"}}>
-
-                                <Grid.Column width={4}>
-                                    <DashTeam />
-                                </Grid.Column>
-                                <Divider vertical></Divider>
-                                <Grid.Column>
-                                    Profile
-                                </Grid.Column>
-                        </Grid>
-
+                     <Grid columns={2} divided style={{ marginLeft: "5%"}}>
+                        <Grid.Column width={4}>
+                            <DashTeam paramId={this.props.match.params.id}/>
+                        </Grid.Column>
+                        <Divider vertical></Divider>
+                        <Grid.Column>
+                            Profile
+                        </Grid.Column>
+                    </Grid>
                 </main>
             </div>
         )
