@@ -1,20 +1,19 @@
 import React from "react";
 import { graphql } from 'react-apollo'
-import { Card, Item, Dimmer, Loader, Header, Icon, Segment } from "semantic-ui-react";
-import query from '../queries/fetchTeammates'
+import { Card, Item, Header, Icon, Segment } from "semantic-ui-react";
+
 
 class DashTeam extends React.Component {
     renderTeammates(){
-        if(!this.props.data.personById) return 
-        const teammatesArray = this.props.data.personById.teamByTeamId.peopleByTeamId.nodes
-        const userId = this.props.data.personById.id
-        const teamName = this.props.data.personById.teamByTeamId.teamName
-        const teamId = this.props.data.personById.teamByTeamId.id
+        const teammatesArray = this.props.teammates.peopleByTeamId.nodes
+        const userId = this.props.paramId
+        const teamName = this.props.teammates.teamName
+        const teamId = this.props.teammates.id
 
         return teammatesArray.map(({ id, firstName, lastName, position, userPictureUrl }) => {
-            if(id === userId) return
+            if(id === parseInt(userId)) return
             return (
-                <Card raised>
+                <Card raised key={id} >
                     <Card.Content>
                         <Item.Group>
                             <Item>
@@ -32,23 +31,11 @@ class DashTeam extends React.Component {
     }
 
   render() {
-      console.log(this.props)
-    if(this.props.data.loading){
-        return (
-            <Card>
-                <Card.Content>
-                    <Dimmer active inverted>
-                        <Loader content='Loading' />
-                    </Dimmer>
-                </Card.Content>
-            </Card>
-        )
-    } else {
         return (
             <div>
                 <Header as='h3'>
                     <Icon name='group' />
-                    <Header.Content>Team {this.props.data.personById.teamByTeamId.teamName}</Header.Content>
+                    <Header.Content>Team {this.props.teammates.name}</Header.Content>
                 </Header> 
                 <Card.Group>
                     {this.renderTeammates()}
@@ -56,11 +43,8 @@ class DashTeam extends React.Component {
             </div>
         )
     }
-  }
 }
 
-export default graphql(query, {
-    options: (props) => { return { variables: { id: parseInt(props.paramId) } } }
-})(DashTeam);
+export default (DashTeam);
 
 
