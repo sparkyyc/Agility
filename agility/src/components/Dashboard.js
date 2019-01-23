@@ -10,6 +10,8 @@ import fetchUserWithTeammates from '../queries/fetchUserWithTeammates'
 
 class Dashboard extends React.Component {
 
+    // **TODO** set state in dashboard components? State vs props
+
     render(){
         if(this.props.data.loading){
             return (

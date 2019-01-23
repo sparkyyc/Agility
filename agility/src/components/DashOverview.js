@@ -1,17 +1,18 @@
 import React from "react";
 import { Image, Segment, Header, Container, Grid } from "semantic-ui-react";
 import '../styling/DashOverview.css'
+
+import DashRatings from './DashRatings'
 class DashProfileOverview extends React.Component {
-  calculateRatings() {}
 
   render() {
     console.log(this.props.userInfo);
-
     const {
       firstName,
       lastName,
       userPictureUrl,
-      position
+      position,
+      ratingsByRatingFor
     } = this.props.userInfo;
 
     return (
@@ -27,8 +28,12 @@ class DashProfileOverview extends React.Component {
         </div>
         <div>
           <Grid columns={2} divided>
-            <Grid.Column>Ratings</Grid.Column>
-            <Grid.Column>Other</Grid.Column>
+            <Grid.Column>
+                <DashRatings ratings={ratingsByRatingFor} />
+            </Grid.Column>
+            <Grid.Column>
+                Other
+            </Grid.Column>
           </Grid>
         </div>
       </div>
