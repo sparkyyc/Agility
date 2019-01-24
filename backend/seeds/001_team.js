@@ -17,5 +17,8 @@ exports.seed = function(knex, Promise) {
         {id: 9, key: uuidv4(), name: '2SpaceMasterRace'},
         {id: 10, key: uuidv4(), name: 'Kernel Panic at the Disco'},
       ])
+    }).then(function() {
+      // Moves id column (PK) auto-incrementer to correct value after inserts
+      return knex.raw("SELECT setval('team_id_seq', (SELECT MAX(id) FROM team))")
     })
 }

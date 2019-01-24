@@ -8,6 +8,7 @@ class DashProfileOverview extends React.Component {
   render() {
     console.log(this.props.userInfo);
     const {
+      id,
       firstName,
       lastName,
       userPictureUrl,
@@ -29,7 +30,7 @@ class DashProfileOverview extends React.Component {
         <div>
           <Grid columns={2} divided>
             <Grid.Column>
-                <DashRatings ratings={ratingsByRatingFor} />
+                <DashRatings ratings={ratingsByRatingFor} userId={id} />
             </Grid.Column>
             <Grid.Column>
                 Other

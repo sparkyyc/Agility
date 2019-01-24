@@ -23,7 +23,9 @@ export default gql`
       }
       ratingsByRatingFor {
         nodes {
+          id
           rating
+          ratingBy
           skillBySkillId {
             skillName
           }

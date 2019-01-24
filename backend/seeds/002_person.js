@@ -29,5 +29,8 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('person').insert(fakeUsers);
-    });
+    }).then(function() {
+      // Moves id column (PK) auto-incrementer to correct value after inserts
+      return knex.raw("SELECT setval('person_id_seq', (SELECT MAX(id) FROM person))")
+    })
 };
