@@ -24,10 +24,6 @@ const client = new ApolloClient({
     fetchOptions: {
         mode: 'no-cors',
       },
-    // defaultOptions: { 
-    //     watchQuery: { fetchPolicy: 'network-only' },
-    //     query: { fetchPolicy: 'network-only' }
-    // }
 })
 
 const Login = () => <h2>Login</h2>;

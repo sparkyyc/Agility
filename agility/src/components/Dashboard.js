@@ -17,33 +17,15 @@ class Dashboard extends React.Component {
         this.state = { userId: parseInt(this.props.match.params.id) }
     }
 
-    // **TODO** set state in dashboard components? State vs props
-
     handleRate = (skillid, rating) => {
         this.props.mutate({
             variables: { 
                 ratingFor: parseInt(this.props.match.params.id), 
                 ratingBy:  parseInt(this.props.match.params.id), 
                 skillId: skillid, 
-                rating },
-                // update: {
-                //     (cache, { data: { ratingFor: parseInt(this.props.match.params.id), 
-                //         ratingBy:  parseInt(this.props.match.params.id), 
-                //         skillId: skillid, 
-                //         rating } }) => {
-                //             const { personById } = cache.readQuery({ query: fetchUserWithTeammates })
-                //              var index = personByIdratingsByRatingFor.findIndex(r => r.id == "john")
-                //             cache.writeQuery({
-                //                 query: fetchUserWithTeammates,
-                //                 data: { personById: {...personById, personById.ratingsByRatingFor} }
-                //             })
-                //         }
-                // }
+                rating 
+            },
                 refetchQueries: [{ query: fetchUserWithTeammates, variables: { id: parseInt(this.props.match.params.id) } }],
-        }).then((res) => {
-            // console.log(this.props.data)
-            // this.props.data.refetch()
-            // this.setState({ userId: this.state.userId })
         })
     }
 
@@ -80,4 +62,3 @@ export default graphql(fetchUserWithTeammates, {
     options: (props) => { return { variables: { id: parseInt(props.match.params.id) } } }
 })(graphql(UpsertRating)(Dashboard))
 
-// graphql(UpsertRating)(Dashboard)

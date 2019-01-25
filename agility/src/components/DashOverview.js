@@ -8,6 +8,7 @@ class DashProfileOverview extends React.Component {
 
     // **TODO**
     // show how many people voted on skill
+    // add search for skill on show skill ratings side
 
   render() {
     //  console.log(this.props.userInfo);
@@ -37,7 +38,7 @@ class DashProfileOverview extends React.Component {
                 <DashRatings ratings={ratingsByRatingFor} userId={id} handleRate={this.props.handleRate} />
             </Grid.Column>
             <Grid.Column>
-                <DashSkillAdd />
+                <DashSkillAdd ratings={ratingsByRatingFor} userId={id} handleRate={this.props.handleRate} />
             </Grid.Column>
           </Grid>
         </div>
