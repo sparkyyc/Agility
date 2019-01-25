@@ -6,7 +6,7 @@ import DashRatings from './DashRatings'
 class DashProfileOverview extends React.Component {
 
   render() {
-    console.log(this.props.userInfo);
+    //  console.log(this.props.userInfo);
     const {
       id,
       firstName,
@@ -30,7 +30,7 @@ class DashProfileOverview extends React.Component {
         <div>
           <Grid columns={2} divided>
             <Grid.Column>
-                <DashRatings ratings={ratingsByRatingFor} userId={id} />
+                <DashRatings ratings={ratingsByRatingFor} userId={id} handleRate={this.props.handleRate} />
             </Grid.Column>
             <Grid.Column>
                 Other

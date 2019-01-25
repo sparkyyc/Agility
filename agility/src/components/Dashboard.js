@@ -7,12 +7,48 @@ import DashTeam from './DashTeam'
 import DashOverview from './DashOverview'
 
 import fetchUserWithTeammates from '../queries/fetchUserWithTeammates'
+import UpsertRating from '../mutations/UpsertRating'
 
 class Dashboard extends React.Component {
 
+    constructor(props){
+        super(props)
+
+        this.state = { userId: parseInt(this.props.match.params.id) }
+    }
+
     // **TODO** set state in dashboard components? State vs props
 
+    handleRate = (skillid, rating) => {
+        this.props.mutate({
+            variables: { 
+                ratingFor: parseInt(this.props.match.params.id), 
+                ratingBy:  parseInt(this.props.match.params.id), 
+                skillId: skillid, 
+                rating },
+                // update: {
+                //     (cache, { data: { ratingFor: parseInt(this.props.match.params.id), 
+                //         ratingBy:  parseInt(this.props.match.params.id), 
+                //         skillId: skillid, 
+                //         rating } }) => {
+                //             const { personById } = cache.readQuery({ query: fetchUserWithTeammates })
+                //              var index = personByIdratingsByRatingFor.findIndex(r => r.id == "john")
+                //             cache.writeQuery({
+                //                 query: fetchUserWithTeammates,
+                //                 data: { personById: {...personById, personById.ratingsByRatingFor} }
+                //             })
+                //         }
+                // }
+                refetchQueries: [{ query: fetchUserWithTeammates, variables: { id: parseInt(this.props.match.params.id) } }],
+        }).then((res) => {
+            // console.log(this.props.data)
+            // this.props.data.refetch()
+            // this.setState({ userId: this.state.userId })
+        })
+    }
+
     render(){
+        console.log(this.props.data)
         if(this.props.data.loading){
             return (
                     <Dimmer active inverted>
@@ -30,7 +66,7 @@ class Dashboard extends React.Component {
                         </Grid.Column>
                         <Divider vertical></Divider>
                         <Grid.Column>
-                            <DashOverview userInfo={this.props.data.personById} />
+                            <DashOverview userInfo={this.props.data.personById} handleRate={this.handleRate} />
                         </Grid.Column>
                     </Grid>
                 </main>
@@ -42,4 +78,6 @@ class Dashboard extends React.Component {
 
 export default graphql(fetchUserWithTeammates, {
     options: (props) => { return { variables: { id: parseInt(props.match.params.id) } } }
-})(Dashboard)
+})(graphql(UpsertRating)(Dashboard))
+
+// graphql(UpsertRating)(Dashboard)

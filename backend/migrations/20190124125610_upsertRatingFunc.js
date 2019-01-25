@@ -2,7 +2,7 @@
 
 exports.up = function(knex, Promise) {
  return knex.raw(`
-    CREATE FUNCTION public.update_or_insert_rating(ratingFor integer, ratingBy integer, skillId integer, rating1 integer)
+    CREATE FUNCTION public.upsert_rating(ratingFor integer, ratingBy integer, skillId integer, rating1 integer)
     RETURNS public.rating
     AS $$
         INSERT INTO rating(rating_for, rating_by, skill_id, rating)
@@ -16,5 +16,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-    return knex.raw(`DROP FUNCTION IF EXISTS update_or_insert_rating`)
+    return knex.raw(`DROP FUNCTION IF EXISTS upsert_rating`)
 };
