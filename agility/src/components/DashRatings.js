@@ -5,18 +5,8 @@ import UpsertRating from '../mutations/UpsertRating'
 import query from '../queries/fetchUserWithTeammates'
 
 class DashRatings extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { skills: {}, userRatings: {} };
-  }
-
-  componentDidMount() {
-    this.hashRatings()
-  }
 
   hashRatings() {
-    //   console.log(this.props.ratings)
     const ratingsArr = this.props.ratings.nodes
     let hash = {};
     let userHash = {}
@@ -39,7 +29,7 @@ class DashRatings extends React.Component {
           }
       }
     });
-    this.setState({ skills: hash, userRatings: userHash })
+    return { skills: hash, userRatings: userHash }
   }
 
   // **TODO** on hover show non-rounded down rating
@@ -49,27 +39,17 @@ class DashRatings extends React.Component {
   // if userRating is null do not render user rating, maybe link to page to add rating
 
   handleRate = (event, { rating, maxRating, skillid, skillname }) => {
-    // this.props.mutate({
-    //     variables: { 
-    //         ratingFor: parseInt(this.props.userId), 
-    //         ratingBy:  parseInt(this.props.userId), 
-    //         skillId: skillid, 
-    //         rating },
-    //         refetchQueries: [{ query, variables: { id: parseInt(this.props.userId) } }],
-    // })
-    // .then(() => {
-    //     this.props.data.refetch()
-    //     // this.setState({ 
-    //     //     userRatings: {...this.state.userRatings, [skillname]: { id: skillid, rating } }
-    //     // })
-    // })
+  
     this.props.handleRate(skillid, rating)
 }
 
   renderRatings() {
     // <Rating maxRating={5} onRate={this.handleRate} />
-    return Object.keys(this.state.skills).map(skill => {
-      const { ratings, count, id } = this.state.skills[skill];
+    const { skills, userRatings } = this.hashRatings()
+    // console.log('dashRatings', this.state)
+    console.log(this.state)
+    return Object.keys(skills).map(skill => {
+      const { ratings, count, id } = skills[skill];
       const averageRating = ratings.reduce((acc, currVal) => acc + currVal) / count;
       return (
         <div key={id}>
@@ -77,20 +57,20 @@ class DashRatings extends React.Component {
           <Popup 
             flowing
             hoverable
+            position='right center'
             trigger={<Rating
                 maxRating={5}
-                defaultRating={Math.floor(averageRating)}
+                rating={Math.floor(averageRating)}
                 icon="star"
                 disabled
           />}
-        //   content={`Average rating: ${averageRating} Self-Rating: ${this.state.userRating}`}
           >
             <Grid centered divided columns={2}>
                 <Grid.Column textAlign='center'>
                 <Header as='h4'>Self-Rating:</Header>
                     <Rating
                         maxRating={5}
-                        defaultRating={this.state.userRatings[skill].rating}
+                        rating={userRatings[skill].rating}
                         icon="star"
                         onRate={this.handleRate}
                         skillid={id}

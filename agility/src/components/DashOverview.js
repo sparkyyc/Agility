@@ -3,7 +3,11 @@ import { Image, Segment, Header, Container, Grid } from "semantic-ui-react";
 import '../styling/DashOverview.css'
 
 import DashRatings from './DashRatings'
+import DashSkillAdd from './DashSkillAdd'
 class DashProfileOverview extends React.Component {
+
+    // **TODO**
+    // show how many people voted on skill
 
   render() {
     //  console.log(this.props.userInfo);
@@ -33,7 +37,7 @@ class DashProfileOverview extends React.Component {
                 <DashRatings ratings={ratingsByRatingFor} userId={id} handleRate={this.props.handleRate} />
             </Grid.Column>
             <Grid.Column>
-                Other
+                <DashSkillAdd />
             </Grid.Column>
           </Grid>
         </div>
