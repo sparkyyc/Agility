@@ -3,9 +3,10 @@ exports.up = function(knex, Promise) {
     return knex.schema.createTable('person', function(table) {
       table.increments()
       table.uuid('key')
-      table.string('first_name', 255).notNullable().defaultTo('')
-      table.string('last_name', 255).notNullable().defaultTo('')
-      table.string('email', 255).unique().notNullable().defaultTo('')
+      table.string('first_name', 255).defaultTo('')
+      table.string('last_name', 255).defaultTo('')
+      table.string('email', 255).unique().notNullable()
+      table.text('password')
       table.text('user_picture_url').defaultTo('')
       table.string('position', 255).defaultTo('')
       table.boolean('teamLead').defaultTo(false)
