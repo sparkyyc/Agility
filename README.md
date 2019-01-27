@@ -1,2 +1,2 @@
-# AgileSkillMappingFront
-Front-end for Agile Skill Mapping Developer Management System
+# Agility
+Agility is an agile skill mapping web application for teams.
