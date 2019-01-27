@@ -53,7 +53,6 @@ app.use(
     graphiql: true,
     appendPlugins: [PassportLoginPlugin],
     additionalGraphQLContextFromRequest: req => {
-      debugger
       return {
         // Use this to tell Passport.js we're logged in
         ...req,

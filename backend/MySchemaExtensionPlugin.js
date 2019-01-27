@@ -45,7 +45,6 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
     Query: {
       async currentUser(_query, args, context) {
         try {
-          debugger
           return context.user
         } catch (e) {
           console.log(e)
@@ -80,7 +79,7 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
       ) {
         const { email, password } = args.input
         const { rootPgPool, login, pgClient } = context
-        debugger
+
         try {
           console.log(login)
           return AuthService.login({ email, password, context })
