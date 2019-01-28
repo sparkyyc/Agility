@@ -8,7 +8,6 @@ class DashProfileOverview extends React.Component {
 
     // **TODO**
     // show how many people voted on skill
-    // add search for skill on show skill ratings side
 
   render() {
     //  console.log(this.props.userInfo);

@@ -23,9 +23,9 @@ const store = new KnexSessionStore({
   knex: knex
 })
 
+app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 app.use(cors(corsOptions))
-app.use(cookieParser())
 // app.use(bodyParser());
 app.use(logger("dev"))
 app.use(express.json())
@@ -35,7 +35,11 @@ app.use(
     resave: false,
     saveUninitialized: true,
     secret: "kitkat",
-    // cookie: { maxAge: Date.now() + (30 * 86400 * 1000) },
+    cookie: {
+      maxAge: Date.now() + 30 * 86400 * 1000,
+      httpOnly: false,
+      sameSite: false
+    },
     store: store
   })
 )

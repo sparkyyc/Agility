@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import { Segment, Grid, Divider, Dimmer, Loader } from 'semantic-ui-react'
 
-import SideNav from './SideNav'
 import DashTeam from './DashTeam'
 import DashOverview from './DashOverview'
 
@@ -10,12 +9,6 @@ import fetchUserWithTeammates from '../queries/fetchUserWithTeammates'
 import UpsertRating from '../mutations/UpsertRating'
 
 class Dashboard extends React.Component {
-
-    constructor(props){
-        super(props)
-
-        this.state = { userId: parseInt(this.props.match.params.id) }
-    }
 
     handleRate = (skillid, rating) => {
         this.props.mutate({
@@ -40,9 +33,7 @@ class Dashboard extends React.Component {
         } else {
         return(
             <div>
-                <SideNav />
-                <main>
-                     <Grid columns={2} divided style={{ marginLeft: "5%"}}>
+                     <Grid columns={2} divided >
                         <Grid.Column width={4}>
                             <DashTeam paramId={this.props.match.params.id} teammates={this.props.data.personById.teamByTeamId} />
                         </Grid.Column>
@@ -51,7 +42,6 @@ class Dashboard extends React.Component {
                             <DashOverview userInfo={this.props.data.personById} handleRate={this.handleRate} />
                         </Grid.Column>
                     </Grid>
-                </main>
             </div>
         )
     }

@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import UpsertRating from '../mutations/UpsertRating'
 import query from '../queries/fetchUserWithTeammates'
 
-class DashRatings extends React.Component {
+class PersonRatings extends React.Component {
 
   hashRatings() {
     const ratingsArr = this.props.ratings.nodes
@@ -35,8 +35,6 @@ class DashRatings extends React.Component {
   // **TODO** on hover show non-rounded down rating
   // how to show your self rating
   // clarify how many people have voted on it
-  // ensure only one rating per user for and by
-  // if userRating is null do not render user rating, maybe link to page to add rating
 
   handleRate = (event, { rating, maxRating, skillid, skillname }) => {
   
@@ -98,5 +96,5 @@ class DashRatings extends React.Component {
   }
 }
 
-export default graphql(UpsertRating)(DashRatings)
+export default graphql(UpsertRating)(PersonRatings)
 
