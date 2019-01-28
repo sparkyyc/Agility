@@ -8,7 +8,7 @@ class UserInfoForm extends React.Component {
     super(props)
 
     this.state = {
-      fristName: "",
+      firstName: "",
       lastName: "",
       pic: "",
       position: "",
@@ -17,15 +17,16 @@ class UserInfoForm extends React.Component {
     }
   }
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault()
     console.log(this.state)
   }
 
   handleChange = (e, data) => {
-    console.log(data.value)
     this.setState({ team: data.value })
   }
+
+  toggle = () => this.setState({ checked: !this.state.teamLead })
 
   render() {
     if (this.props.data.loading) {
@@ -38,7 +39,8 @@ class UserInfoForm extends React.Component {
     const options = this.props.data.allTeams.nodes.map(team => {
       return {
         ...team,
-        text: team.name
+        text: team.name,
+        value: team.id
       }
     })
     return (
@@ -67,17 +69,16 @@ class UserInfoForm extends React.Component {
           value={this.state.position}
           onChange={e => this.setState({ position: e.target.value })}
         />
-        <Form.Field
-          control={Select}
+        <Form.Select
           options={options}
           placeholder="Teams"
           value={this.state.team}
-          onClick={this.handleChange}
+          onChange={this.handleChange}
         />
         <Form.Checkbox
           label="I am a Team Lead with Admin Privileges"
-          value={this.state.teamLead}
-          onChange={e => this.setState({ teamLead: e.target.value })}
+          onChange={this.toggle}
+          checked={this.state.teamLead}
         />
         <Button type="submit">Submit</Button>
       </Form>
