@@ -2,7 +2,6 @@ import React from "react";
 import { graphql } from "react-apollo";
 import { Segment, Grid, Divider, Dimmer, Loader } from "semantic-ui-react";
 
-import SideNav from "./SideNav";
 import DashTeam from "./DashTeam";
 import DashOverview from "./DashOverview";
 
@@ -43,30 +42,22 @@ class Dashboard extends React.Component {
     } else {
       return (
         <div>
-          <SideNav />
-          <main>
-            <Grid
-              columns={2}
-              divided
-              style={{ paddingLeft: "75px" }}
-              padded="horizontally"
-            >
-              <Grid.Column width={4}>
-                <DashTeam
-                  paramId={this.props.match.params.id}
-                  teammates={this.props.data.personById.teamByTeamId}
-                  userInfo={this.props.data.personById}
-                />
-              </Grid.Column>
+          <Grid columns={2} divided padded="horizontally">
+            <Grid.Column width={4}>
+              <DashTeam
+                paramId={this.props.match.params.id}
+                teammates={this.props.data.personById.teamByTeamId}
+                userInfo={this.props.data.personById}
+              />
+            </Grid.Column>
 
-              <Grid.Column stretched width={12}>
-                <DashOverview
-                  userInfo={this.props.data.personById}
-                  handleRate={this.handleRate}
-                />
-              </Grid.Column>
-            </Grid>
-          </main>
+            <Grid.Column stretched width={12}>
+              <DashOverview
+                userInfo={this.props.data.personById}
+                handleRate={this.handleRate}
+              />
+            </Grid.Column>
+          </Grid>
         </div>
       );
     }

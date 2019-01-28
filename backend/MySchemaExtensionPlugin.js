@@ -18,8 +18,6 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
       #   user: Person! @pgField
       email: String!
       id: Int!
-      firstName: String
-      lastName: String
     }
     input LoginInput {
       email: String!
@@ -63,7 +61,13 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
         const { password, email } = args.input
         const { rootPgPool, login, pgClient } = context
         try {
-          return AuthService.signup({ email, password, context })
+          return AuthService.signup({
+            email,
+            password,
+            firstName,
+            lastName,
+            context
+          })
         } catch (e) {
           console.error(e)
           // TODO: check that this is indeed why it failed

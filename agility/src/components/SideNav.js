@@ -19,6 +19,9 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import { Route } from "react-router-dom";
+import Dashboard from "./Dashboard";
+import PersonDetails from "./PersonDetails";
 
 const drawerWidth = 240;
 
@@ -97,20 +100,9 @@ class MiniDrawer extends React.Component {
     this.setState({ open: false });
   };
 
-  //   renderSideNav(props){
-  //     // {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-  //     //     <ListItem button key={text}>
-  //     //       <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-  //     //       <ListItemText primary={text} />
-  //     //     </ListItem>
-  //     //   ))}
-  //       return(
-
-  //       )
-  //   }
-
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, children } = this.props;
+    const { open } = this.state;
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -182,6 +174,7 @@ class MiniDrawer extends React.Component {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
+          {children}
         </main>
       </div>
     );

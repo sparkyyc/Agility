@@ -31,7 +31,6 @@ passport.use(
       .then(user => {
         if (!user) return done(null, false, `Invalid Credentials`)
         bcrypt.compare(password, user.password, (err, isValid) => {
-          // console.log("isValid", isValid)
           if (err) {
             return done(err)
           }
