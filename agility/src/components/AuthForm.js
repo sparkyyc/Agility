@@ -22,7 +22,7 @@ class AuthForm extends React.Component {
 
   render() {
     return (
-      <Form error onSubmit={this.onSubmit.bind(this)}>
+      <Form onSubmit={this.onSubmit.bind(this)}>
         <Form.Input
           label="Email"
           placeholder="joe@schmoe.com"

@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "react-apollo"
-import { HashRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom"
 import AuthForm from "./AuthForm"
 import query from "../queries/currentUser"
 import LoginMutation from "../mutations/Login"
@@ -13,9 +13,9 @@ class LoginForm extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-      if(!this.props.data.currentUser && nextProps.data.currentUser){
-        
-      }
+    if (!this.props.data.currentUser && nextProps.data.currentUser) {
+      this.props.history.push(`/dashboard/${nextProps.data.currentUser.id}`)
+    }
   }
 
   onSubmit({ email, password }) {
@@ -47,4 +47,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default graphql(query)(graphql(LoginMutation)(LoginForm))
+export default withRouter(graphql(query)(graphql(LoginMutation)(LoginForm)))

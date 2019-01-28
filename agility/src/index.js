@@ -18,6 +18,7 @@ import "./index.css"
 import App from "./App"
 import Login from "./components/LoginForm"
 import Signup from "./components/SignupForm"
+import UserInfoForm from "./components/UserInfoForm"
 
 const link = createHttpLink({
   uri: "http://localhost:4000/graphql",
@@ -46,6 +47,7 @@ const Root = () => {
             <Route path="/" exact component={Splash} />
             <Route path="/login/" component={Login} />
             <Route path="/signup/" component={Signup} />
+            <Route path="/edit/:id" component={UserInfoForm} />
             <Route component={App} />
           </Switch>
           {/* <Route path="/dashboard/:id" component={Dashboard} />
