@@ -1,0 +1,17 @@
+.hideOverflow {
+  overflow: hidden
+}
+
+.hideOverflow img {
+  min-height: 75px;
+  min-width: 75px;
+}
+
+.meta {
+  text-transform: capitalize;
+}
+
+.userEmail .button {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

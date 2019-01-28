@@ -8,6 +8,7 @@ export default gql`
       lastName
       userPictureUrl
       position
+      email
       ratingsByRatingFor {
         nodes {
           rating
