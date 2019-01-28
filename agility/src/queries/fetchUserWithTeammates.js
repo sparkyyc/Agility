@@ -18,6 +18,7 @@ export default gql`
             lastName
             position
             userPictureUrl
+            email
           }
         }
       }
