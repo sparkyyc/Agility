@@ -8,6 +8,8 @@ export default gql`
       lastName
       userPictureUrl
       position
+      email
+      teamLead
       teamByTeamId {
         id
         name

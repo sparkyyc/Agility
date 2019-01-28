@@ -69,8 +69,8 @@ class DashTeam extends React.Component {
                         <Message
                           compact
                           style={{
-                            padding: "4px 8px",
-                            fontSize: ".8em"
+                            padding: "2px 8px",
+                            fontSize: ".7em"
                           }}
                         >
                           <Icon name="user outline" />
