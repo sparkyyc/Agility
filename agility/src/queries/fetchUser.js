@@ -10,6 +10,7 @@ export default gql`
       position
       teamId
       teamLead
+      email
     }
   }
 `
