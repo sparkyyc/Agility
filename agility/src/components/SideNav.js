@@ -19,7 +19,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import PersonDetails from "./PersonDetails";
 
@@ -156,12 +156,23 @@ class MiniDrawer extends React.Component {
           </div>
           <Divider />
           <List>
-            <ListItem button>
-              <ListItemIcon>
-                <Icon>dashboard</Icon>
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
+            <Link to="/dashboard/1">
+              <ListItem button>
+                <ListItemIcon>
+                  <Icon>dashboard</Icon>
+                </ListItemIcon>
+
+                <ListItemText primary="Dashboard" />
+              </ListItem>
+            </Link>
+            <Link to="/skills">
+              <ListItem button>
+                <ListItemIcon>
+                  <Icon>build</Icon>
+                </ListItemIcon>
+                <ListItemText primary="Skill Catalog" />
+              </ListItem>
+            </Link>
           </List>
           <Divider />
           <List>
