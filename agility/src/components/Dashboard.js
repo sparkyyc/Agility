@@ -1,18 +1,18 @@
-import React from "react";
-import { graphql } from "react-apollo";
-import { Segment, Grid, Divider, Dimmer, Loader } from "semantic-ui-react";
+import React from "react"
+import { graphql, compose } from "react-apollo"
+import { Segment, Grid, Divider, Dimmer, Loader } from "semantic-ui-react"
 
-import DashTeam from "./DashTeam";
-import DashOverview from "./DashOverview";
+import DashTeam from "./DashTeam"
+import DashOverview from "./DashOverview"
 
-import fetchUserWithTeammates from "../queries/fetchUserWithTeammates";
-import UpsertRating from "../mutations/UpsertRating";
+import fetchUserWithTeammates from "../queries/fetchUserWithTeammates"
+import UpsertRating from "../mutations/UpsertRating"
 
 class Dashboard extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { userId: parseInt(this.props.match.params.id) };
+    this.state = { userId: parseInt(this.props.match.params.id) }
   }
 
   handleRate = (skillid, rating) => {
@@ -29,8 +29,8 @@ class Dashboard extends React.Component {
           variables: { id: parseInt(this.props.match.params.id) }
         }
       ]
-    });
-  };
+    })
+  }
 
   render() {
     if (this.props.data.loading) {
@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
         <Dimmer active inverted>
           <Loader content="Loading" />
         </Dimmer>
-      );
+      )
     } else {
       return (
         <div>
@@ -59,13 +59,16 @@ class Dashboard extends React.Component {
             </Grid.Column>
           </Grid>
         </div>
-      );
+      )
     }
   }
 }
 
-export default graphql(fetchUserWithTeammates, {
-  options: props => {
-    return { variables: { id: parseInt(props.match.params.id) } };
-  }
-})(graphql(UpsertRating)(Dashboard));
+export default compose(
+  graphql(fetchUserWithTeammates, {
+    options: props => {
+      return { variables: { id: parseInt(props.match.params.id) } }
+    }
+  }),
+  graphql(UpsertRating)
+)(Dashboard)

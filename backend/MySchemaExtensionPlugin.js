@@ -64,8 +64,6 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
           return AuthService.signup({
             email,
             password,
-            firstName,
-            lastName,
             context
           })
         } catch (e) {
