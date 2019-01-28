@@ -25,7 +25,7 @@ class AuthForm extends React.Component {
       <Form onSubmit={this.onSubmit.bind(this)}>
         <Form.Input
           label="Email"
-          placeholder="joe@schmoe.com"
+          placeholder="harry@hogwarts.com"
           value={this.state.email}
           onChange={e => this.setState({ email: e.target.value })}
         />

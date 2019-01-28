@@ -1,7 +1,9 @@
 import React from "react"
-import { Button, Form, Dimmer, Loader, Select } from "semantic-ui-react"
-import { graphql } from "react-apollo"
+import { Button, Form, Dimmer, Loader, Message, Input } from "semantic-ui-react"
+import { graphql, compose } from "react-apollo"
+import FetchUser from "../queries/fetchUser"
 import FetchTeams from "../queries/fetchTeams"
+import UpdatePersonById from "../mutations/UpdatePersonById"
 
 class UserInfoForm extends React.Component {
   constructor(props) {
@@ -13,13 +15,26 @@ class UserInfoForm extends React.Component {
       pic: "",
       position: "",
       team: "",
-      teamLead: false
+      teamLead: false,
+      errors: []
     }
   }
 
   onSubmit = event => {
     event.preventDefault()
-    console.log(this.state)
+    const { firstName, lastName, pic, position, team, teamLead } = this.state
+    // this.props
+    //   .mutate({
+    //     variables: { email, password },
+    //     refetchQueries: [{ query }]
+    //   })
+    //   .then(res => {
+    //     console.log(res)
+    //   })
+    //   .catch(res => {
+    //     const errors = res.graphQLErrors.map(error => error.message)
+    //     this.setState({ errors })
+    //   })
   }
 
   handleChange = (e, data) => {
@@ -28,15 +43,33 @@ class UserInfoForm extends React.Component {
 
   toggle = () => this.setState({ checked: !this.state.teamLead })
 
+  setDefaultVals = () => {
+    this.setState({
+      firstName: this.props.user.personById.firstName,
+      lastName: this.props.user.personById.lastName,
+      pic: this.props.user.personById.userPictureUrl,
+      position: this.props.user.personById.position,
+      team: this.props.user.personById.teamId,
+      teamLead: this.props.user.personById.teamLead
+    })
+  }
+
+  renderErrors = () => {
+    return this.state.errors.map(error => {
+      return <Message key={error} error header="Oops!" content={error} />
+    })
+  }
+
   render() {
-    if (this.props.data.loading) {
+    if (this.props.allTeams.loading || this.props.user.loading) {
       return (
         <Dimmer active inverted>
           <Loader content="Loading" />
         </Dimmer>
       )
     }
-    const options = this.props.data.allTeams.nodes.map(team => {
+    console.log(this.props)
+    const options = this.props.allTeams.allTeams.nodes.map(team => {
       return {
         ...team,
         text: team.name,
@@ -45,9 +78,11 @@ class UserInfoForm extends React.Component {
     })
     return (
       <Form onSubmit={this.onSubmit}>
-        <Form.Input
+        <Form.Field
+          control={Input}
           label="First Name"
           placeholder="First Name"
+          defaultValue={this.props.user.personById.firstName}
           value={this.state.firstName}
           onChange={e => this.setState({ firstName: e.target.value })}
         />
@@ -80,10 +115,25 @@ class UserInfoForm extends React.Component {
           onChange={this.toggle}
           checked={this.state.teamLead}
         />
+        {this.renderErrors()}
         <Button type="submit">Submit</Button>
       </Form>
     )
   }
 }
 
-export default graphql(FetchTeams)(UserInfoForm)
+export default compose(
+  graphql(UpdatePersonById),
+  graphql(FetchTeams, { name: "allTeams" }),
+  graphql(FetchUser, {
+    name: "user",
+    options: props => {
+      return { variables: { id: parseInt(props.match.params.id) } }
+    }
+  })
+)(UserInfoForm)
+// graphql(FetchUser, {
+//   options: props => {
+//     return { variables: { id: parseInt(props.match.params.id) } }
+//   }
+// })(graphql(UpdatePersonById)(graphql(FetchTeams)(UserInfoForm)))

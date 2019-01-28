@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from "graphql-tag"
 
 export default gql`
   query FetchUser($id: Int!) {
@@ -8,14 +8,8 @@ export default gql`
       lastName
       userPictureUrl
       position
-      ratingsByRatingFor {
-        nodes {
-          rating
-          skillBySkillId {
-            skillName
-          }
-        }
-      }
+      teamId
+      teamLead
     }
   }
-`;
+`
