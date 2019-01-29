@@ -17,7 +17,6 @@ import "./DashOverview.css";
 class DashOverviewHeader extends React.Component {
   // **TODO**
   // show how many people voted on skill
-  // add search for skill on show skill ratings side
 
   renderIsTeamLead() {
     return this.props.userInfo.teamLead ? (

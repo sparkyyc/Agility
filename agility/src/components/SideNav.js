@@ -129,7 +129,7 @@ class MiniDrawer extends React.Component {
 
   onLogoutClick = () => {
     this.props.mutate().then(() => {
-      this.props.history.push(`/`)
+      this.props.history.push(`/login`)
     })
   }
 

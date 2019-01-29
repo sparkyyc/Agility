@@ -99,6 +99,15 @@ class DashTeam extends React.Component {
   }
 
   render() {
+    if (!this.props.teammates) {
+      return (
+        <Header as="h3">
+          <Icon name="group" />
+          <Header.Content>No team yet</Header.Content>
+        </Header>
+      )
+    }
+
     return (
       <div>
         <Header as="h3">
