@@ -1,4 +1,6 @@
 import React from "react"
+import { Route, Link, withRouter } from "react-router-dom"
+import { graphql } from "react-apollo"
 import PropTypes from "prop-types"
 import classNames from "classnames"
 import { withStyles } from "@material-ui/core/styles"
@@ -23,12 +25,8 @@ import MailIcon from "@material-ui/icons/Mail"
 import NotificationsIcon from "@material-ui/icons/Notifications"
 import MenuItem from "@material-ui/core/MenuItem"
 import Menu from "@material-ui/core/Menu"
-import { graphql } from "react-apollo"
 import LogoutMutation from "../mutations/Logout"
-import { Route, Link } from "react-router-dom"
-import Dashboard from "./Dashboard"
-import PersonDetails from "./PersonDetails"
-import { withRouter } from "react-router-dom"
+import Dashboard from "./Dashboard/Dashboard"
 
 const drawerWidth = 240
 

@@ -2,10 +2,10 @@ import React from "react"
 import { graphql } from "react-apollo"
 import { withRouter } from "react-router-dom"
 import AuthForm from "./AuthForm"
-import query from "../queries/currentUser"
-import LoginMutation from "../mutations/Login"
+import query from "../../queries/currentUser"
+import SignupMutation from "../../mutations/Signup"
 
-class LoginForm extends React.Component {
+class SignupForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
 
   componentWillUpdate(nextProps) {
     if (!this.props.data.currentUser && nextProps.data.currentUser) {
-      this.props.history.push(`/dashboard/${nextProps.data.currentUser.id}`)
+      this.props.history.push(`/edit/${nextProps.data.currentUser.id}`)
     }
   }
 
@@ -34,10 +34,9 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
-        <h3>Login</h3>
+        <h3>Signup</h3>
         <AuthForm
           errors={this.state.errors}
           onSubmit={this.onSubmit.bind(this)}
@@ -47,4 +46,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default withRouter(graphql(query)(graphql(LoginMutation)(LoginForm)))
+export default withRouter(graphql(query)(graphql(SignupMutation)(SignupForm)))

@@ -1,8 +1,8 @@
 import React from "react"
 import { Rating, Header, Popup, Grid, Card } from "semantic-ui-react"
 import { graphql } from "react-apollo"
-import UpsertRating from "../mutations/UpsertRating"
-import query from "../queries/fetchUserWithTeammates"
+import UpsertRating from "../../mutations/UpsertRating"
+import query from "../../queries/fetchUserWithTeammates"
 
 class DashRatings extends React.Component {
   hashRatings() {

@@ -5,8 +5,8 @@ import { Segment, Grid, Divider, Dimmer, Loader } from "semantic-ui-react"
 import DashTeam from "./DashTeam"
 import DashOverview from "./DashOverview"
 
-import fetchUserWithTeammates from "../queries/fetchUserWithTeammates"
-import UpsertRating from "../mutations/UpsertRating"
+import fetchUserWithTeammates from "../../queries/fetchUserWithTeammates"
+import UpsertRating from "../../mutations/UpsertRating"
 
 class Dashboard extends React.Component {
   handleRate = (skillid, rating) => {

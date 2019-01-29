@@ -16,13 +16,16 @@ import "semantic-ui-css/semantic.min.css"
 import "./index.css"
 
 import App from "./App"
-import Login from "./components/LoginForm"
-import Signup from "./components/SignupForm"
+import Login from "./components/Auth/LoginForm"
+import Signup from "./components/Auth/SignupForm"
 import EditForm from "./components/editForm"
-import RequireAuth from "./components/RequireAuth"
+import RequireAuth from "./components/Auth/RequireAuth"
+
+const URL = "https://agility-app.herokuapp.com/graphql"
+// const URL = "http://localhost:4000/graphql"
 
 const link = createHttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri: URL,
   credentials: "include"
 })
 

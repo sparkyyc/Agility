@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "react-apollo"
-import currentUserQuery from "../queries/currentUser"
+import currentUserQuery from "../../queries/currentUser"
 import { withRouter } from "react-router-dom"
 
 export default WrappedComponenet => {

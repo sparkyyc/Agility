@@ -13,10 +13,9 @@ import {
   Segment
 } from "semantic-ui-react"
 import { graphql } from "react-apollo"
-import fetchSkills from "../queries/fetchSkills"
-import createSkill from "../mutations/CreateSkill"
+import fetchSkills from "../../queries/fetchSkills"
 import _ from "lodash"
-import CreateSkill from "../mutations/CreateSkill"
+import CreateSkill from "../../mutations/CreateSkill"
 
 const resultRenderer = ({ id, title }) => {
   return (

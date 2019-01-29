@@ -8,6 +8,7 @@
     "@material-ui/styles": "^3.0.0-alpha.8",
     "apollo-boost": "^0.1.27",
     "apollo-link-http": "^1.5.9",
+    "custom-env": "^1.0.0",
     "graphql": "^14.1.1",
     "nodemon": "^1.18.9",
     "passport": "^0.4.0",

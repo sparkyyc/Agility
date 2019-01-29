@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "start-debug": "nodemon --inspect ./bin/www"
+    "start": "node ./bin/www",
+    "start-debug": "nodemon --inspect ./bin/www",
+    "nodemon": "nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^3.0.3",
@@ -26,7 +27,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.8.0",
-    "postgraphile": "^4.2.0"
+    "postgraphile": "^4.2.0",
+    "faker": "^4.1.0"
   },
   "devDependencies": {
     "faker": "^4.1.0",
