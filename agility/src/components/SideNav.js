@@ -1,29 +1,36 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { withStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Icon from "@material-ui/core/Icon";
-import Avatar from "@material-ui/core/Avatar";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import { Route, Link } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import PersonDetails from "./PersonDetails";
+import React from "react"
+import PropTypes from "prop-types"
+import classNames from "classnames"
+import { withStyles } from "@material-ui/core/styles"
+import Drawer from "@material-ui/core/Drawer"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import List from "@material-ui/core/List"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import Typography from "@material-ui/core/Typography"
+import Divider from "@material-ui/core/Divider"
+import IconButton from "@material-ui/core/IconButton"
+import MenuIcon from "@material-ui/icons/Menu"
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
+import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemIcon from "@material-ui/core/ListItemIcon"
+import ListItemText from "@material-ui/core/ListItemText"
+import Icon from "@material-ui/core/Icon"
+import AccountCircle from "@material-ui/icons/AccountCircle"
+import Badge from "@material-ui/core/Badge"
+import MailIcon from "@material-ui/icons/Mail"
+import NotificationsIcon from "@material-ui/icons/Notifications"
+import MenuItem from "@material-ui/core/MenuItem"
+import Menu from "@material-ui/core/Menu"
+import { graphql } from "react-apollo"
+import LogoutMutation from "../mutations/Logout"
+import { Route, Link } from "react-router-dom"
+import Dashboard from "./Dashboard"
+import PersonDetails from "./PersonDetails"
+import { withRouter } from "react-router-dom"
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 const styles = theme => ({
   root: {
@@ -84,25 +91,70 @@ const styles = theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3
+  },
+  toolbarButtons: {
+    marginLeft: "auto",
+    marginRight: "10px"
   }
-});
+})
 
 class MiniDrawer extends React.Component {
   state = {
-    open: false
-  };
+    open: false,
+    anchorEl: null
+  }
 
   handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
+    this.setState({ open: true })
+  }
 
   handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
+    this.setState({ open: false })
+  }
+
+  handleProfileMenuOpen = event => {
+    this.setState({ anchorEl: event.currentTarget })
+  }
+
+  handleMenuClose = () => {
+    this.setState({ anchorEl: null })
+    this.handleMobileMenuClose()
+  }
+
+  handleMobileMenuOpen = event => {
+    this.setState({ mobileMoreAnchorEl: event.currentTarget })
+  }
+
+  handleMobileMenuClose = () => {
+    this.setState({ mobileMoreAnchorEl: null })
+  }
+
+  onLogoutClick = () => {
+    this.props.mutate().then(res => {
+      console.log(res)
+    })
+  }
+
+  onEditProClick = () => {
+    this.props.history.push(`/edit/`)
+  }
 
   render() {
-    const { classes, theme, children } = this.props;
-    const { open } = this.state;
+    const { classes, theme, children } = this.props
+    const isMenuOpen = Boolean(this.state.anchorEl)
+    const renderMenu = (
+      <Menu
+        anchorEl={this.state.anchorEl}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
+        open={isMenuOpen}
+        onClose={this.handleMenuClose}
+      >
+        <MenuItem onClick={this.onEditProClick}>Edit Profile</MenuItem>
+        <MenuItem onClick={this.onLogoutClick}>Logout</MenuItem>
+      </Menu>
+    )
+
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -129,8 +181,19 @@ class MiniDrawer extends React.Component {
             <Typography variant="h6" color="inherit" noWrap>
               Agility
             </Typography>
+            <div className={classes.toolbarButtons}>
+              <IconButton
+                aria-owns={isMenuOpen ? "material-appbar" : undefined}
+                aria-haspopup="true"
+                onClick={this.handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
           </Toolbar>
         </AppBar>
+        {renderMenu}
         <Drawer
           variant="permanent"
           className={classNames(classes.drawer, {
@@ -156,7 +219,7 @@ class MiniDrawer extends React.Component {
           </div>
           <Divider />
           <List>
-            <Link to="/dashboard/1">
+            <Link to="/dashboard/">
               <ListItem button>
                 <ListItemIcon>
                   <Icon>dashboard</Icon>
@@ -175,26 +238,21 @@ class MiniDrawer extends React.Component {
             </Link>
           </List>
           <Divider />
-          <List>
-            <ListItem button style={{ position: "fixed", bottom: "10px" }}>
-              <ListItemAvatar>
-                <Avatar src="http://placekitten.com/300/300" />
-              </ListItemAvatar>
-            </ListItem>
-          </List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {children}
         </main>
       </div>
-    );
+    )
   }
 }
 
 MiniDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
-};
+}
 
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+export default withRouter(
+  graphql(LogoutMutation)(withStyles(styles, { withTheme: true })(MiniDrawer))
+)

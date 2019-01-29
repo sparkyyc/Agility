@@ -15,7 +15,10 @@ class EditForm extends React.Component {
     }
     return (
       <div>
-        <UserInfoForm userInfo={this.props.data.personById} userId={this.props.match.params.id} />
+        <UserInfoForm
+          userInfo={this.props.data.personById}
+          userId={this.props.currentUser.id}
+        />
       </div>
     )
   }
@@ -23,6 +26,6 @@ class EditForm extends React.Component {
 
 export default graphql(FetchUser, {
   options: props => {
-    return { variables: { id: parseInt(props.match.params.id) } }
+    return { variables: { id: parseInt(props.currentUser.id) } }
   }
 })(EditForm)

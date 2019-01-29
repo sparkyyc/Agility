@@ -13,8 +13,8 @@ class SignupForm extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    if (!this.props.data.user && nextProps.data.user) {
-      this.props.history.push(`/newUser/${nextProps.data.currentUser.id}`)
+    if (!this.props.data.currentUser && nextProps.data.currentUser) {
+      this.props.history.push(`/edit/${nextProps.data.currentUser.id}`)
     }
   }
 
@@ -46,4 +46,4 @@ class SignupForm extends React.Component {
   }
 }
 
-export default graphql(query)(graphql(SignupMutation)(SignupForm))
+export default withRouter(graphql(query)(graphql(SignupMutation)(SignupForm)))
