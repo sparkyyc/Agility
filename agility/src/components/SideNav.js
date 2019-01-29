@@ -20,14 +20,15 @@ import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import Icon from "@material-ui/core/Icon"
 import AccountCircle from "@material-ui/icons/AccountCircle"
-import Badge from "@material-ui/core/Badge"
+import Avatar from "@material-ui/core/Avatar"
 import MailIcon from "@material-ui/icons/Mail"
 import NotificationsIcon from "@material-ui/icons/Notifications"
 import MenuItem from "@material-ui/core/MenuItem"
 import Menu from "@material-ui/core/Menu"
 import LogoutMutation from "../mutations/Logout"
 import Dashboard from "./Dashboard/Dashboard"
-
+import SvgIcon from "@material-ui/core/SvgIcon"
+import logo from "../assets/logo.png"
 const drawerWidth = 240
 
 const styles = theme => ({
@@ -176,7 +177,17 @@ class MiniDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
+            <Avatar
+              alt="Agility Logo"
+              src={logo}
+              className={classes.bigAvatar}
+            />
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              style={{ marginLeft: "8px" }}
+            >
               Agility
             </Typography>
             <div className={classes.toolbarButtons}>

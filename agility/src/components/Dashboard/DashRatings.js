@@ -63,15 +63,12 @@ class DashRatings extends React.Component {
   }
 
   renderRatings() {
-    // <Rating maxRating={5} onRate={this.handleRate} />
     const { skills, userRatings } = this.hashRatings()
     console.log(this.props)
     const ratingHead =
       this.props.currentUser === this.props.userId
         ? "Self-Rating:"
         : "Your Rating:"
-    // console.log('dashRatings', this.state)
-    console.log(this.state)
     return Object.keys(skills).map(skill => {
       const { ratings, count, id } = skills[skill]
       const averageRating =

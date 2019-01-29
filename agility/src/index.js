@@ -21,8 +21,8 @@ import Signup from "./components/Auth/SignupForm"
 import EditForm from "./components/editForm"
 import RequireAuth from "./components/Auth/RequireAuth"
 
-const URL = "https://agility-app.herokuapp.com/graphql"
-// const URL = "http://localhost:4000/graphql"
+// const URL = "https://agility-app.herokuapp.com/graphql"
+const URL = "http://localhost:4000/graphql"
 
 const link = createHttpLink({
   uri: URL,
