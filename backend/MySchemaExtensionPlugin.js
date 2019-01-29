@@ -4,7 +4,6 @@ const AuthService = require("./services/auth")
 const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
   typeDefs: gql`
     type currentUserPayload {
-      #   user: Person! @pgField
       email: String!
       id: Int!
       firstName: String
@@ -15,7 +14,6 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
       password: String!
     }
     type RegisterPayload {
-      #   user: Person! @pgField
       email: String!
       id: Int!
     }
@@ -24,7 +22,6 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
       password: String!
     }
     type LoginPayload {
-      #   user: Person! @pgField
       email: String!
       id: Int!
       firstName: String
@@ -45,7 +42,6 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
         try {
           return context.user
         } catch (e) {
-          console.log(e)
           throw new Error("Error")
         }
       }
@@ -59,7 +55,6 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
         { selectGraphQLResultFromTable }
       ) {
         const { password, email } = args.input
-        const { rootPgPool, login, pgClient } = context
         try {
           return AuthService.signup({
             email,
@@ -67,7 +62,6 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
             context
           })
         } catch (e) {
-          console.error(e)
           // TODO: check that this is indeed why it failed
           throw new Error("Login failed: incorrect email/password")
         }
@@ -80,10 +74,7 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
         { selectGraphQLResultFromTable }
       ) {
         const { email, password } = args.input
-        const { rootPgPool, login, pgClient } = context
-
         try {
-          console.log(login)
           return AuthService.login({ email, password, context })
         } catch (e) {
           console.error(e)
@@ -97,7 +88,6 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
           context.logout()
           return user
         } catch (e) {
-          console.log(e)
           throw new Error("Logout failed")
         }
       }

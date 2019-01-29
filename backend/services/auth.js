@@ -6,16 +6,6 @@ const init = require("../passport")
 const knex = require("../knex")
 const authHelpers = require("./_helpers")
 
-// passport.serializeUser((user, done) => {
-//     done(null, user.id);
-//   });
-
-// passport.deserializeUser((id, done) => {
-//     knex('person').where({ id }).first()
-//     .then((user) => { done(null, user); })
-//     .catch((err) => { done(err,null); });
-//   });
-
 init()
 
 const options = {
@@ -40,12 +30,6 @@ passport.use(
           console.log("valid user", user)
           return done(null, user)
         })
-        // if (!authHelpers.comparePass(password, user.password)) {
-        //   return done(null, false)
-        // } else {
-        //     console.log('hit here')
-        //   return done(null, user)
-        // }
       })
       .catch(err => {
         return done(err)

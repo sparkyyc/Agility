@@ -1,8 +1,8 @@
+require("custom-env").env("staging")
 var express = require("express")
 const { postgraphile } = require("postgraphile")
 var path = require("path")
 var cookieParser = require("cookie-parser")
-// const bodyParser = require('body-parser')
 var logger = require("morgan")
 var cors = require("cors")
 const session = require("express-session")
@@ -15,7 +15,7 @@ const PassportLoginPlugin = require("./MySchemaExtensionPlugin")
 var app = express()
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: process.env.CLIENT_URL,
   credentials: true // <-- REQUIRED backend setting
 }
 
@@ -26,7 +26,6 @@ const store = new KnexSessionStore({
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 app.use(cors(corsOptions))
-// app.use(bodyParser());
 app.use(logger("dev"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -34,7 +33,7 @@ app.use(
   session({
     resave: false,
     saveUninitialized: true,
-    secret: "kitkat",
+    secret: process.env.SECRET_KEY,
     cookie: {
       maxAge: Date.now() + 30 * 86400 * 1000,
       httpOnly: false,
@@ -45,20 +44,12 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
-// app.use((ctx, next) => {
-//   // PostGraphile deals with (req, res) but we want access to sessions from `pgSettings`, so we make the ctx available on req.
-//   if (ctx.req) {
-//     ctx.req.ctx = ctx
-//     return next()
-//   }
-// })
 app.use(
   postgraphile(process.env.DATABASE_URL || "postgres:///agility-dev", {
     graphiql: true,
     appendPlugins: [PassportLoginPlugin],
     additionalGraphQLContextFromRequest: req => {
       return {
-        // Use this to tell Passport.js we're logged in
         ...req,
         login: req.login,
         logout: req.logout
