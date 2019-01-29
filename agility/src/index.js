@@ -19,6 +19,7 @@ import App from "./App"
 import Login from "./components/LoginForm"
 import Signup from "./components/SignupForm"
 import EditForm from "./components/editForm"
+import RequireAuth from "./components/RequireAuth"
 
 const link = createHttpLink({
   uri: "http://localhost:4000/graphql",
@@ -46,8 +47,8 @@ const Root = () => {
           <Route path="/" exact component={Splash} />
           <Route path="/login/" component={Login} />
           <Route path="/signup/" component={Signup} />
-          <Route path="/edit/:id" component={EditForm} />
-          <Route component={App} />
+          <Route path="/edit/" component={RequireAuth(EditForm)} />
+          <Route component={RequireAuth(App)} />
         </Switch>
       </Router>
     </ApolloProvider>

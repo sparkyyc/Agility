@@ -27,7 +27,7 @@ class UserInfoForm extends React.Component {
     this.props
       .mutate({
         variables: {
-          id: parseInt(this.props.userId),
+          id: this.props.userId,
           firstName,
           lastName,
           userPictureUrl: pic,

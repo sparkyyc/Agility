@@ -28,6 +28,7 @@ import LogoutMutation from "../mutations/Logout"
 import { Route, Link } from "react-router-dom"
 import Dashboard from "./Dashboard"
 import PersonDetails from "./PersonDetails"
+import { withRouter } from "react-router-dom"
 
 const drawerWidth = 240
 
@@ -134,6 +135,10 @@ class MiniDrawer extends React.Component {
     })
   }
 
+  onEditProClick = () => {
+    this.props.history.push(`/edit/`)
+  }
+
   render() {
     const { classes, theme, children } = this.props
     const isMenuOpen = Boolean(this.state.anchorEl)
@@ -145,7 +150,7 @@ class MiniDrawer extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Edit Profile</MenuItem>
+        <MenuItem onClick={this.onEditProClick}>Edit Profile</MenuItem>
         <MenuItem onClick={this.onLogoutClick}>Logout</MenuItem>
       </Menu>
     )
@@ -214,7 +219,7 @@ class MiniDrawer extends React.Component {
           </div>
           <Divider />
           <List>
-            <Link to="/dashboard/1">
+            <Link to="/dashboard/">
               <ListItem button>
                 <ListItemIcon>
                   <Icon>dashboard</Icon>
@@ -248,6 +253,6 @@ MiniDrawer.propTypes = {
   theme: PropTypes.object.isRequired
 }
 
-export default graphql(LogoutMutation)(
-  withStyles(styles, { withTheme: true })(MiniDrawer)
+export default withRouter(
+  graphql(LogoutMutation)(withStyles(styles, { withTheme: true })(MiniDrawer))
 )

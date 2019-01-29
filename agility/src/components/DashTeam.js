@@ -24,7 +24,7 @@ class DashTeam extends React.Component {
 
   renderTeammates() {
     const teammatesArray = this.props.teammates.peopleByTeamId.nodes;
-    const userId = this.props.paramId;
+    const userId = this.props.currentUser;
     const teamName = this.props.teammates.teamName;
     const teamId = this.props.teammates.id;
 

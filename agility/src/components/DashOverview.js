@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   Image,
   Segment,
@@ -9,13 +9,13 @@ import {
   Button,
   Label,
   Icon
-} from "semantic-ui-react";
+} from "semantic-ui-react"
 
-import DashRatings from "./DashRatings";
-import DashSkillAdd from "./DashSkillAdd";
+import DashRatings from "./DashRatings"
+import DashSkillAdd from "./DashSkillAdd"
 
-import "./DashOverview.css";
-import DashOverviewHeader from "./DashOverviewHeader";
+import "./DashOverview.css"
+import DashOverviewHeader from "./DashOverviewHeader"
 
 class DashOverview extends React.Component {
   // **TODO**
@@ -32,7 +32,7 @@ class DashOverview extends React.Component {
       position,
       ratingsByRatingFor,
       email
-    } = this.props.userInfo;
+    } = this.props.userInfo
 
     return (
       <div>
@@ -43,6 +43,7 @@ class DashOverview extends React.Component {
             <Grid.Column width="10">
               <Header>Your skills</Header>
               <DashRatings
+                currentUser={this.props.currentUser}
                 ratings={ratingsByRatingFor}
                 userId={id}
                 handleRate={this.props.handleRate}
@@ -50,6 +51,7 @@ class DashOverview extends React.Component {
             </Grid.Column>
             <Grid.Column width="6">
               <DashSkillAdd
+                currentUser={this.props.currentUser}
                 ratings={ratingsByRatingFor}
                 userId={id}
                 handleRate={this.props.handleRate}
@@ -58,8 +60,8 @@ class DashOverview extends React.Component {
           </Grid>
         </Segment>
       </div>
-    );
+    )
   }
 }
 
-export default DashOverview;
+export default DashOverview

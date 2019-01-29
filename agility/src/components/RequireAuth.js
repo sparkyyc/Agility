@@ -12,7 +12,15 @@ export default WrappedComponenet => {
     }
 
     render() {
-      return <WrappedComponenet {...this.props} />
+      if(this.props.data.loading){
+        return <div>Loading</div>
+      }
+      return (
+        <WrappedComponenet
+          currentUser={this.props.data.currentUser}
+          {...this.props}
+        />
+      )
     }
   }
 
