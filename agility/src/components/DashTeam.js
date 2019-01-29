@@ -1,5 +1,6 @@
-import React from "react";
-import { graphql } from "react-apollo";
+import React from "react"
+import { graphql } from "react-apollo"
+import { withRouter } from "react-router-dom"
 import {
   Card,
   Item,
@@ -10,31 +11,31 @@ import {
   Extra,
   Button,
   Message
-} from "semantic-ui-react";
-import { classNames } from "classnames";
+} from "semantic-ui-react"
+import { classNames } from "classnames"
 
-import "./DashTeam.css";
+import "./DashTeam.css"
 
 class DashTeam extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    console.log(this.props);
+    console.log(this.props)
   }
 
   renderTeammates() {
-    const teammatesArray = this.props.teammates.peopleByTeamId.nodes;
-    const userId = this.props.currentUser;
-    const teamName = this.props.teammates.teamName;
-    const teamId = this.props.teammates.id;
+    const teammatesArray = this.props.teammates.peopleByTeamId.nodes
+    const userId = this.props.currentUser
+    const teamName = this.props.teammates.teamName
+    const teamId = this.props.teammates.id
 
-    console.log(teammatesArray);
+    console.log(teammatesArray)
 
     // teammatesArray.unshift({});
 
     return teammatesArray.map(
       ({ id, firstName, lastName, position, userPictureUrl, email }) => {
-        const selfNode = id === parseInt(userId);
+        const selfNode = id === parseInt(userId)
         return (
           <Card
             raised
@@ -58,6 +59,9 @@ class DashTeam extends React.Component {
                     <Item.Header
                       key={id}
                       as="a"
+                      onClick={() =>
+                        this.props.history.push(`/dashboard/${id}`)
+                      }
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
@@ -89,9 +93,9 @@ class DashTeam extends React.Component {
               </Item.Group>
             </Card.Content>
           </Card>
-        );
+        )
       }
-    );
+    )
   }
 
   render() {
@@ -103,8 +107,8 @@ class DashTeam extends React.Component {
         </Header>
         <Card.Group>{this.renderTeammates()}</Card.Group>
       </div>
-    );
+    )
   }
 }
 
-export default DashTeam;
+export default withRouter(DashTeam)

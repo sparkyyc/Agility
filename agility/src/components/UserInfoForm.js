@@ -118,7 +118,9 @@ class UserInfoForm extends React.Component {
   }
 }
 
-export default compose(
-  graphql(UpdatePersonById),
-  graphql(FetchTeams, { name: "allTeams" })
-)(UserInfoForm)
+export default withRouter(
+  compose(
+    graphql(UpdatePersonById),
+    graphql(FetchTeams, { name: "allTeams" })
+  )(UserInfoForm)
+)
