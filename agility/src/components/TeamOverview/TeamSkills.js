@@ -1,5 +1,14 @@
 import React from "react"
-import { Rating, Header, Popup, Grid, Card } from "semantic-ui-react"
+import {
+  Rating,
+  Header,
+  Popup,
+  Grid,
+  Card,
+  Feed,
+  Divider,
+  Icon
+} from "semantic-ui-react"
 
 const calcAvg = (oldAvg, count, newNum) => {
   return (oldAvg * count + newNum) / (count + 1)
@@ -106,6 +115,36 @@ class TeamSkills extends React.Component {
     return hash
   }
 
+  renderFeedOfRatings = (teamHash, skill) => {
+    return Object.keys(teamHash).map(person => {
+      if (teamHash[person].skills[skill]) {
+        const {
+          firstName,
+          lastName,
+          id,
+          teamLead,
+          userPictureUrl,
+          skills
+        } = teamHash[person]
+        return (
+          <Feed.Event key={id}>
+            <Feed.Label>
+              <Icon name="chart pie" />
+            </Feed.Label>
+            <Feed.Content>
+              <Feed.Summary>
+                <a>
+                  {firstName} {lastName}
+                </a>{" "}
+                has a {skills[skill].avg} in {skill}
+              </Feed.Summary>
+            </Feed.Content>
+          </Feed.Event>
+        )
+      }
+    })
+  }
+
   renderRatings = () => {
     const teamHash = this.hashUsersRatings()
     console.log(teamHash)
@@ -114,7 +153,7 @@ class TeamSkills extends React.Component {
     return Object.keys(skillHash).map(skill => {
       const { id, count, avg, ratings } = skillHash[skill]
       return (
-        <Card key={id} color={this.randomColor()} fluid>
+        <Card key={id} color={this.randomColor()}>
           <Card.Content>
             <Card.Header>{skill}</Card.Header>
             <Card.Description>
@@ -142,6 +181,8 @@ class TeamSkills extends React.Component {
                 </Grid>
               </Popup>
             </Card.Description>
+            <Divider />
+            <Feed>{this.renderFeedOfRatings(teamHash, skill)}</Feed>
           </Card.Content>
         </Card>
       )

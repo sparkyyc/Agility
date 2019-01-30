@@ -26,8 +26,6 @@ class DashTeam extends React.Component {
   renderTeammates() {
     const teammatesArray = this.props.teammates.peopleByTeamId.nodes
     const userId = this.props.currentUser
-    const teamName = this.props.teammates.teamName
-    const teamId = this.props.teammates.id
 
     console.log(teammatesArray)
 
@@ -107,12 +105,17 @@ class DashTeam extends React.Component {
         </Header>
       )
     }
-
+    const { name, id } = this.props.teammates
     return (
       <div>
         <Header as="h3">
           <Icon name="group" />
-          <Header.Content>Team {this.props.teammates.name}</Header.Content>
+          <Header.Content
+            as="a"
+            onClick={() => this.props.history.push(`/team/${id}`)}
+          >
+            Team {name}
+          </Header.Content>
         </Header>
         <Card.Group>{this.renderTeammates()}</Card.Group>
       </div>
