@@ -30,7 +30,10 @@ class TeamOverview extends React.Component {
           </Grid.Column>
           <Grid.Column>
             <Header>Team</Header>
-            <Teammates teamInfo={this.props.data.teamById} />
+            <Teammates
+              teamInfo={this.props.data.teamById}
+              userId={this.props.currentUser.id}
+            />
           </Grid.Column>
         </Grid>
       </div>

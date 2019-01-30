@@ -1,9 +1,13 @@
-const uuidv4 = require("uuid/v4");
-const faker = require("faker");
+const uuidv4 = require("uuid/v4")
+const faker = require("faker")
 
 const randomTeam = () => {
-  return Math.floor(Math.random() * 10) + 1;
-};
+  const teamId = Math.floor(Math.random() * 11) + 1
+  if (teamId > 10) {
+    return null
+  }
+  return teamId
+}
 
 const createFakeUser = () => ({
   first_name: faker.name.firstName(),
@@ -12,7 +16,7 @@ const createFakeUser = () => ({
   position: faker.name.jobTitle(),
   team_id: randomTeam(),
   user_picture_url: faker.image.imageUrl()
-});
+})
 
 exports.seed = function(knex, Promise) {
   const fakeUsers = [
@@ -42,22 +46,22 @@ exports.seed = function(knex, Promise) {
       team_id: 2,
       user_picture_url: "https://www.placecage.com/c/300/300"
     }
-  ];
-  const desiredUsers = 50;
+  ]
+  const desiredUsers = 50
   for (let i = 0; i < desiredUsers; i++) {
-    fakeUsers.push(createFakeUser());
+    fakeUsers.push(createFakeUser())
   }
   // Deletes ALL existing entries
   return knex("person")
     .del()
     .then(function() {
       // Inserts seed entries
-      return knex("person").insert(fakeUsers);
+      return knex("person").insert(fakeUsers)
     })
     .then(function() {
       // Moves id column (PK) auto-incrementer to correct value after inserts
       return knex.raw(
         "SELECT setval('person_id_seq', (SELECT MAX(id) FROM person))"
-      );
-    });
-};
+      )
+    })
+}

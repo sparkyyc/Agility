@@ -18,7 +18,7 @@ import "./index.css"
 import App from "./App"
 import Login from "./components/Auth/LoginForm"
 import Signup from "./components/Auth/SignupForm"
-import EditForm from "./components/editForm"
+import EditForm from "./components/Forms/editForm"
 import RequireAuth from "./components/Auth/RequireAuth"
 
 // const URL = "https://agility-app.herokuapp.com/graphql"

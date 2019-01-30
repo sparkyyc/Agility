@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "react-apollo"
 import { Dimmer, Loader } from "semantic-ui-react"
 import UserInfoForm from "./UserInfoForm"
-import FetchUser from "../queries/fetchUser"
+import FetchUser from "../../queries/fetchUser"
 
 class EditForm extends React.Component {
   render() {

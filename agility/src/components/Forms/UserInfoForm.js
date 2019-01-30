@@ -3,8 +3,8 @@ import { Button, Form, Dimmer, Loader, Message, Input } from "semantic-ui-react"
 import { graphql, compose } from "react-apollo"
 import { withRouter } from "react-router-dom"
 
-import FetchTeams from "../queries/fetchTeams"
-import UpdatePersonById from "../mutations/UpdatePersonById"
+import FetchTeams from "../../queries/fetchTeams"
+import UpdatePersonById from "../../mutations/UpdatePersonById"
 
 class UserInfoForm extends React.Component {
   constructor(props) {

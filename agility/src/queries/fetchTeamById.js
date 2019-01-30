@@ -12,6 +12,8 @@ export default gql`
           lastName
           userPictureUrl
           teamLead
+          position
+          email
           ratingsByRatingFor {
             nodes {
               rating
