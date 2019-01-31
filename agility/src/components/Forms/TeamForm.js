@@ -13,81 +13,106 @@ import {
   Segment,
   Dropdown
 } from "semantic-ui-react"
-import { graphql } from "react-apollo"
+import { graphql, ApolloConsumer, compose } from "react-apollo"
 import _ from "lodash"
 import FetchTeams from "../../queries/fetchTeamsAsTitle"
-import TeamCreateEdit from "./TeamCreateEdit"
-
-const resultRenderer = ({ id, title }) => {
-  console.log(id, title)
-  return (
-    <div key={id}>
-      <Label content={title} />
-    </div>
-  )
-}
-
-resultRenderer.propTypes = {
-  title: PropTypes.string
-}
+import UpdatePersonById from "../../mutations/UpdatePersonById"
+import CreateTeam from "../../mutations/CreateTeam"
+import TeamCreate from "./TeamCreate"
+import TeamEdit from "./TeamEdit"
 
 class TeamForm extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { value: "", valueId: null, isLoading: false, results: [] }
+    this.state = {
+      teamOptions: [],
+      teamName: "",
+      existingTeam: null
+    }
   }
 
-  componentWillMount() {
-    this.resetComponent()
+  handleAddition = (e, { value, options }) => {
+    this.setState({
+      teamOptions: [{ text: value, value }, ...options]
+    })
   }
 
-  resetComponent = () =>
-    this.setState({ isLoading: false, results: [], value: "" })
-
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title })
-
-  handleSearchChange = (e, { value }) => {
-    this.setState({ value, isLoading: true })
-
-    setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent()
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), "i")
-      const isMatch = result => re.test(result.title)
-
+  handleTeamChange = (e, { value }) => {
+    const team = this.props.allTeams.allTeams.nodes.find(team => {
+      return team.title === value
+    })
+    if (team) {
+      // if team exists(update) retrieve data and fill
+      this.setState({ existingTeam: team, teamName: value })
+    } else {
       this.setState({
-        isLoading: false,
-        results: _.filter(this.props.data.allTeams.nodes, isMatch)
+        teamName: value,
+        existingTeam: null
       })
-    }, 300)
+    }
+    // if team doesn't exist clear fields?
+  }
+
+  onSubmit = (description, members, skills) => {
+    // if team does not exist create team
+    // if team exists update desc
+    // update each person picked for team
+    // create team skill association
+  }
+
+  renderEditOrCreate() {
+    if (this.state.existingTeam) {
+      return <TeamEdit selectedTeam={this.state.existingTeam} />
+    } else {
+      return <TeamCreate />
+    }
   }
 
   render() {
-    const { isLoading, value, results } = this.state
     console.log(this.props)
+    if (this.props.allTeams.loading) {
+      return (
+        <Dimmer active inverted>
+          <Loader content="Loading" />
+        </Dimmer>
+      )
+    }
+    const teamArr = this.props.allTeams.allTeams.nodes
+    let teamOptions = teamArr.map(team => {
+      return {
+        key: team.id,
+        text: team.title,
+        value: team.title
+      }
+    })
+    if (this.state.teamOptions.length > 0) {
+      teamOptions = this.state.teamOptions
+    }
     return (
       <div>
         <Form>
-          <Form.Field>
-            <label>Search for existing team or create a new team</label>
-            <Dropdown
-              placeholder="Team Name"
-              fluid
-              selection
-              search
-              allowAdditions
-              value={this.state.teamName}
-              options={teamOptions}
-              onAddItem={this.handleAddition}
-              onChange={this.handleSkillChange}
-            />
-          </Form.Field>
+          <div>
+            <Form.Field>
+              <label>Search for existing team or create a new team</label>
+              <Dropdown
+                placeholder="Team Name"
+                fluid
+                selection
+                search
+                allowAdditions
+                value={this.state.teamName}
+                options={teamOptions}
+                onAddItem={this.handleAddition}
+                onChange={this.handleTeamChange}
+              />
+            </Form.Field>
+          </div>
         </Form>
-        <TeamCreateEdit />
+        {this.renderEditOrCreate()}
       </div>
     )
   }
 }
 
-export default graphql(FetchTeams)(TeamForm)
+export default compose(graphql(FetchTeams, { name: "allTeams" }))(TeamForm)

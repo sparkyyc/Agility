@@ -2,10 +2,10 @@ import gql from "graphql-tag"
 
 export default gql`
   query FetchAllUsers {
-    allPeople(condition: { teamId: null }) {
+    allPeople {
       nodes {
         id
-        firstName 
+        firstName
         lastName
         email
         userPictureUrl

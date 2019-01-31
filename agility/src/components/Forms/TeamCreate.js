@@ -17,7 +17,12 @@ class TeamCreateUpdate extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { description: "", members: [], skills: [], skillOptions: [] }
+    this.state = {
+      description: "",
+      members: [],
+      skills: [],
+      skillOptions: []
+    }
   }
 
   // Team: name, description, members, skill needs
@@ -41,6 +46,7 @@ class TeamCreateUpdate extends React.Component {
 
   render() {
     console.log(this.props)
+    console.log(this.state.members)
     if (this.props.allSkills.loading || this.props.allPeople.loading) {
       return (
         <Dimmer active inverted>

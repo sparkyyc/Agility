@@ -1,7 +1,7 @@
 import gql from "graphql-tag"
 
 export default gql`
-  query FetchTeam {
+  query FetchTeams {
     allTeams {
       nodes {
         name

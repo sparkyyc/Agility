@@ -6,6 +6,22 @@ export default gql`
       nodes {
         title: name
         id
+        description
+        peopleByTeamId {
+          nodes {
+            id
+            firstName
+            lastName
+          }
+        }
+        teamSkillsByTeamId {
+          nodes {
+            skillBySkillId {
+              skillName
+              id
+            }
+          }
+        }
       }
     }
   }
