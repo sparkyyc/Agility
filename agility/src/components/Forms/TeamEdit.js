@@ -25,7 +25,11 @@ class TeamCreateUpdate extends React.Component {
       skills: this.props.selectedTeam.teamSkillsByTeamId.nodes.map(skill => {
         return skill.skillBySkillId.skillName
       }),
-      skillOptions: []
+      skillOptions: [],
+      newMembers: [],
+      removedMembers: [],
+      newSkills: [],
+      removedSkills: []
     }
   }
 
@@ -39,18 +43,19 @@ class TeamCreateUpdate extends React.Component {
       })
       .then(res => {
         this.setState({
-          skillOptions: [{ text: value, value }, ...options]
+          skillOptions: [{ text: value, value }, ...options],
+          newSkills: [...this.state.newSkills, value]
         })
       })
   }
 
   handleSkillChange = (e, { value }) => this.setState({ skills: value })
 
-  handlePeopleChange = (e, { value }) => this.setState({ members: value })
+  handlePeopleChange = (e, { value }) => {
+    this.setState({ members: value })
+  }
 
   render() {
-    console.log(this.props)
-    console.log(this.state.members)
     if (this.props.allSkills.loading || this.props.allPeople.loading) {
       return (
         <Dimmer active inverted>

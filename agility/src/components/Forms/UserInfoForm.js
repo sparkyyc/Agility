@@ -65,7 +65,6 @@ class UserInfoForm extends React.Component {
         </Dimmer>
       )
     }
-    console.log(this.state)
     const options = this.props.allTeams.allTeams.nodes.map(team => {
       return {
         ...team,

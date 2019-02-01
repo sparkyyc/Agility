@@ -18,6 +18,8 @@ import _ from "lodash"
 import FetchTeams from "../../queries/fetchTeamsAsTitle"
 import UpdatePersonById from "../../mutations/UpdatePersonById"
 import CreateTeam from "../../mutations/CreateTeam"
+import CreateTeamSkill from "../../mutations/CreateTeamSkill"
+import UpdateTeamById from "../../mutations/UpdateTeamById"
 import TeamCreate from "./TeamCreate"
 import TeamEdit from "./TeamEdit"
 
@@ -56,9 +58,36 @@ class TeamForm extends React.Component {
 
   onSubmit = (description, members, skills) => {
     // if team does not exist create team
-    // if team exists update desc
-    // update each person picked for team
-    // create team skill association
+    if (!this.state.existingTeam) {
+      this.props
+        .createTeam({
+          variables: { name: this.state.teamName, description }
+        })
+        .then(res => {
+          // update each person picked for team
+          members.forEach(member => {
+            this.props.updatePerson({
+              variables: { id: member.id, teamId: res.team.id }
+            })
+          })
+          // create team skill association
+          skills.forEach(skill => {
+            this.props.createTeamSkill({
+              variables: { teamId: res.team.id, skillId: skill.id }
+            })
+          })
+        })
+    } else {
+      // if team exists update desc
+      this.props.updateTeam({
+        variables: { id: this.state.existingTeam.id, description }
+      })
+      // update each person picked for team
+      // only update new additions/remove
+
+      // create team skill association
+      // only add new skills
+    }
   }
 
   renderEditOrCreate() {
@@ -70,7 +99,6 @@ class TeamForm extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     if (this.props.allTeams.loading) {
       return (
         <Dimmer active inverted>
@@ -115,4 +143,10 @@ class TeamForm extends React.Component {
   }
 }
 
-export default compose(graphql(FetchTeams, { name: "allTeams" }))(TeamForm)
+export default compose(
+  graphql(FetchTeams, { name: "allTeams" }),
+  graphql(CreateTeam, { name: "createTeam" }),
+  graphql(UpdatePersonById, { name: "updatePerson" }),
+  graphql(CreateTeamSkill, { name: "createTeamSkill" }),
+  graphql(UpdateTeamById, { name: "updateTeam" })
+)(TeamForm)

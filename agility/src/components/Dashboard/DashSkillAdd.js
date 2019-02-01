@@ -93,7 +93,6 @@ class DashAddSkills extends React.Component {
 
   createRatingEl = () => {
     const selfRatings = this.hashSelfRatings()
-    console.log("selfRatings", selfRatings)
     const { addedSkills } = this.state
 
     if (addedSkills.length > 0) {

@@ -27,7 +27,6 @@ passport.use(
           if (!isValid) {
             return done(null, false)
           }
-          console.log("valid user", user)
           return done(null, user)
         })
       })

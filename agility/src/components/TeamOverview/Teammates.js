@@ -16,7 +16,6 @@ class Teammates extends React.Component {
     const teammatesArray = this.props.teamInfo.peopleByTeamId.nodes
     const userId = this.props.userId
 
-    console.log(teammatesArray)
 
     return teammatesArray.map(
       ({ id, firstName, lastName, position, userPictureUrl, email }) => {
@@ -84,7 +83,6 @@ class Teammates extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return <div>{this.renderTeammates()}</div>
   }
 }

@@ -45,8 +45,6 @@ class TeamCreateUpdate extends React.Component {
   handlePeopleChange = (e, { value }) => this.setState({ members: value })
 
   render() {
-    console.log(this.props)
-    console.log(this.state.members)
     if (this.props.allSkills.loading || this.props.allPeople.loading) {
       return (
         <Dimmer active inverted>

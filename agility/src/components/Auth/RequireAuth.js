@@ -7,12 +7,12 @@ export default WrappedComponenet => {
   class RequireAuth extends React.Component {
     componentWillUpdate(nextProps) {
       if (!nextProps.data.loading && !nextProps.data.currentUser) {
-        this.props.history.push(`/splash/`)
+        this.props.history.push(`/`)
       }
     }
 
     render() {
-      if(this.props.data.loading){
+      if (this.props.data.loading) {
         return <div>Loading</div>
       }
       return (

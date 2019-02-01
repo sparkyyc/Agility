@@ -23,7 +23,6 @@ class DashOverview extends React.Component {
   // add search for skill on show skill ratings side
 
   render() {
-    //  console.log(this.props.userInfo);
     const {
       id,
       firstName,

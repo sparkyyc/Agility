@@ -20,16 +20,11 @@ class DashTeam extends React.Component {
   constructor(props) {
     super(props)
 
-    console.log(this.props)
   }
 
   renderTeammates() {
     const teammatesArray = this.props.teammates.peopleByTeamId.nodes
     const userId = this.props.currentUser
-
-    console.log(teammatesArray)
-
-    // teammatesArray.unshift({});
 
     return teammatesArray.map(
       ({ id, firstName, lastName, position, userPictureUrl, email }) => {

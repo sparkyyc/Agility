@@ -10,7 +10,6 @@ import RequireAuth from "./components/Auth/RequireAuth"
 import "./App.css"
 
 const App = props => {
-  console.log(props)
   return (
     <SideNav>
       <Switch>

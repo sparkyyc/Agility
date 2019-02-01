@@ -4,6 +4,7 @@ import { Header, Icon, Grid, Dimmer, Loader, Divider } from "semantic-ui-react"
 import fetchTeamById from "../../queries/fetchTeamById"
 import TeamSkills from "./TeamSkills"
 import Teammates from "./Teammates"
+import TeamNeeds from "./TeamNeeds"
 
 class TeamOverview extends React.Component {
   render() {
@@ -27,6 +28,7 @@ class TeamOverview extends React.Component {
           </Grid.Column>
           <Grid.Column>
             <Header>Team Needs</Header>
+            <TeamNeeds teamInfo={this.props.data.teamById} />
           </Grid.Column>
           <Grid.Column>
             <Header>Team</Header>

@@ -5,6 +5,16 @@ export default gql`
     teamById(id: $id) {
       name
       description
+      teamSkillsByTeamId {
+        nodes {
+          id
+          skillBySkillId {
+            id
+            skillName
+            description
+          }
+        }
+      }
       peopleByTeamId {
         nodes {
           id

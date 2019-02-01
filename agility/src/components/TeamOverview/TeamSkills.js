@@ -147,9 +147,7 @@ class TeamSkills extends React.Component {
 
   renderRatings = () => {
     const teamHash = this.hashUsersRatings()
-    console.log(teamHash)
     const skillHash = this.hashSkills(teamHash)
-    console.log(skillHash)
     return Object.keys(skillHash).map(skill => {
       const { id, count, avg, ratings } = skillHash[skill]
       return (
@@ -190,8 +188,6 @@ class TeamSkills extends React.Component {
   }
 
   render() {
-    console.log(this.props)
-
     return <div>{this.renderRatings()}</div>
   }
 }

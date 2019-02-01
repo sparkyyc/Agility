@@ -64,7 +64,6 @@ class DashRatings extends React.Component {
 
   renderRatings() {
     const { skills, userRatings } = this.hashRatings()
-    console.log(this.props)
     const ratingHead =
       this.props.currentUser === this.props.userId
         ? "Self-Rating:"

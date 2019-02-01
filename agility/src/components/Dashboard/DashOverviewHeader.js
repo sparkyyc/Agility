@@ -43,7 +43,6 @@ class DashOverviewHeader extends React.Component {
   }
 
   render() {
-    //  console.log(this.props.userInfo);
     const {
       id,
       firstName,
