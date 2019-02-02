@@ -86,12 +86,15 @@ class PieData extends React.Component {
           motionStiffness={90}
           motionDamping={15}
           tooltip={function(e) {
-            return <span style={{  width: "120px",
-              backgroundColor: "black",
-  color: "#fff",
-  textAlign: "center"
-  padding: "5px 0"
-  border-radius: 6px;}}>{e.info}</span>
+            return (
+              <span
+                style={{
+                  color: "#942193"
+                }}
+              >
+                {e.info}
+              </span>
+            )
           }}
           defs={[
             {
