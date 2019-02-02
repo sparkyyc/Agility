@@ -19,7 +19,6 @@ import "./DashTeam.css"
 class DashTeam extends React.Component {
   constructor(props) {
     super(props)
-
   }
 
   renderTeammates() {
@@ -33,7 +32,6 @@ class DashTeam extends React.Component {
           <Card
             raised
             key={id}
-            fluid
             style={{
               backgroundColor: selfNode ? "#E8EAF6" : "#fff"
             }}
