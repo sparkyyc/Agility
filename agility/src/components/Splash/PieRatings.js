@@ -72,7 +72,7 @@ class PieData extends React.Component {
           radialLabel="label"
           radialLabelsSkipAngle={10}
           radialLabelsTextXOffset={6}
-          radialLabelsTextColor="#333333"
+          radialLabelsTextColor="#942193"
           radialLabelsLinkOffset={0}
           radialLabelsLinkDiagonalLength={16}
           radialLabelsLinkHorizontalLength={24}
@@ -86,11 +86,12 @@ class PieData extends React.Component {
           motionStiffness={90}
           motionDamping={15}
           tooltip={function(e) {
-            return (
-              <Label basic color="teal">
-                {e.info}
-              </Label>
-            )
+            return <span style={{  width: "120px",
+              backgroundColor: "black",
+  color: "#fff",
+  textAlign: "center"
+  padding: "5px 0"
+  border-radius: 6px;}}>{e.info}</span>
           }}
           defs={[
             {
