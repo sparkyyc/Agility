@@ -33,6 +33,26 @@ class TeamCreateUpdate extends React.Component {
     }
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.selectedTeam !== prevState.selectedTeam) {
+      return {
+        description: nextProps.selectedTeam.description,
+        members: nextProps.selectedTeam.peopleByTeamId.nodes.map(person => {
+          return person.id
+        }),
+        skills: nextProps.selectedTeam.teamSkillsByTeamId.nodes.map(skill => {
+          return skill.skillBySkillId.skillName
+        }),
+        skillOptions: [],
+        newMembers: [],
+        removedMembers: [],
+        newSkills: [],
+        removedSkills: []
+      }
+    }
+    return null
+  }
+
   // Team: name, description, members, skill needs
   handleAddition = (e, { value, options }) => {
     this.props
