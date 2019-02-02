@@ -23,7 +23,7 @@ class TeamCreateUpdate extends React.Component {
         return person.id
       }),
       skills: this.props.selectedTeam.teamSkillsByTeamId.nodes.map(skill => {
-        return skill.skillBySkillId.skillName
+        return skill.skillBySkillId.id
       }),
       skillOptions: [],
       newMembers: [],
@@ -33,25 +33,25 @@ class TeamCreateUpdate extends React.Component {
     }
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.selectedTeam !== prevState.selectedTeam) {
-      return {
-        description: nextProps.selectedTeam.description,
-        members: nextProps.selectedTeam.peopleByTeamId.nodes.map(person => {
-          return person.id
-        }),
-        skills: nextProps.selectedTeam.teamSkillsByTeamId.nodes.map(skill => {
-          return skill.skillBySkillId.skillName
-        }),
-        skillOptions: [],
-        newMembers: [],
-        removedMembers: [],
-        newSkills: [],
-        removedSkills: []
-      }
-    }
-    return null
-  }
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (nextProps.selectedTeam.title !== prevState.selectedTeam.title) {
+  //     return {
+  //       description: nextProps.selectedTeam.description,
+  //       members: nextProps.selectedTeam.peopleByTeamId.nodes.map(person => {
+  //         return person.id
+  //       }),
+  //       skills: nextProps.selectedTeam.teamSkillsByTeamId.nodes.map(skill => {
+  //         return skill.skillBySkillId.id
+  //       }),
+  //       skillOptions: [],
+  //       newMembers: [],
+  //       removedMembers: [],
+  //       newSkills: [],
+  //       removedSkills: []
+  //     }
+  //   }
+  //   return null
+  // }
 
   // Team: name, description, members, skill needs
   handleAddition = (e, { value, options }) => {
@@ -71,17 +71,26 @@ class TeamCreateUpdate extends React.Component {
 
   handleSkillChange = (e, { value }) => this.setState({ skills: value })
 
-  handlePeopleChange = (e, data) => {
-    console.log(e, data)
+  handlePeopleChange = (e, { value }) => {
+    this.setState({ members: value })
   }
 
   renderLabel = label => ({
     content: label.text,
     onRemove: () => {
-      console.log(label.key)
       this.setState({
         members: this.state.members.filter(member => member !== label.key),
         removedMembers: [...this.state.removedMembers, label.key]
+      })
+    }
+  })
+
+  renderSkillLabel = label => ({
+    content: label.text,
+    onRemove: () => {
+      this.setState({
+        skills: this.state.skills.filter(skill => skill !== label.key),
+        removedSkills: [...this.state.removedSkills, label.key]
       })
     }
   })
@@ -95,7 +104,6 @@ class TeamCreateUpdate extends React.Component {
         description: person.position,
         image: person.userPictureUrl,
         onClick: (event, data) => {
-          console.log(event, data)
           this.setState({
             members: [...this.state.members, data.value],
             newMembers: [...this.state.newMembers, data.value]
@@ -105,8 +113,24 @@ class TeamCreateUpdate extends React.Component {
     })
   }
 
+  returnSkillDropdownItems() {
+    return this.props.allSkills.allSkills.nodes.map(skill => {
+      return {
+        key: skill.id,
+        text: skill.title,
+        value: skill.id,
+        onClick: (event, data) => {
+          this.setState({
+            skills: [...this.state.skills, data.value],
+            newSkills: [...this.state.newSkills, data.value]
+          })
+        }
+      }
+    })
+  }
+
   render() {
-    console.log(this.state)
+    console.log(this.props)
     if (this.props.allSkills.loading || this.props.allPeople.loading) {
       return (
         <Dimmer active inverted>
@@ -114,38 +138,17 @@ class TeamCreateUpdate extends React.Component {
         </Dimmer>
       )
     }
-    // const peopleArr = this.props.allPeople.allPeople.nodes
-    // const peopleOptions = peopleArr.map(person => {
-    //   return (
-    //     <Dropdown.Item
-    //       onClick={(event, data) => console.log(event, data)}
-    //       key={person.id}
-    //       text={`${person.firstname} ${person.lastName}`}
-    //       value={person.id}
-    //       description={person.position}
-    //       image={person.userPictureUrl}
-    //     />
-    //   )
-    //   // return {
-    //   //   key: person.id,
-    //   //   text: `${person.firstName} ${person.lastName}`,
-    //   //   value: person.id,
-    //   //   description: person.position,
-    //   //   image: person.userPictureUrl,
-
-    //   // }
+    // const skillsArr = this.props.allSkills.allSkills.nodes
+    // let skillsOptions = skillsArr.map(skill => {
+    //   return {
+    //     key: skill.id,
+    //     text: skill.title,
+    //     value: skill.title
+    //   }
     // })
-    const skillsArr = this.props.allSkills.allSkills.nodes
-    let skillsOptions = skillsArr.map(skill => {
-      return {
-        key: skill.id,
-        text: skill.title,
-        value: skill.title
-      }
-    })
-    if (this.state.skillOptions.length > 0) {
-      skillsOptions = this.state.skillOptions
-    }
+    // if (this.state.skillOptions.length > 0) {
+    //   skillsOptions = this.state.skillOptions
+    // }
     return (
       <Form onSubmit={this.onSubmit}>
         <Form.Field
@@ -163,8 +166,7 @@ class TeamCreateUpdate extends React.Component {
             multiple
             selection
             search
-            onChange={this.handlePeopleChange}
-            // onLabelClick={(e, data) => console.log(data)}
+            // onChange={this.handlePeopleChange}
             renderLabel={this.renderLabel}
             value={this.state.members}
             options={this.returnDropdownItems()}
@@ -180,9 +182,10 @@ class TeamCreateUpdate extends React.Component {
             search
             allowAdditions
             value={this.state.skills}
-            options={skillsOptions}
+            options={this.returnSkillDropdownItems()}
             onAddItem={this.handleAddition}
-            onChange={this.handleSkillChange}
+            // onChange={this.handleSkillChange}
+            renderLabel={this.renderSkillLabel}
           />
         </Form.Field>
         <Button type="submit">Submit</Button>
