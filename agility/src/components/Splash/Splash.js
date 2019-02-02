@@ -250,7 +250,7 @@ const HomepageLayout = props => (
         <Grid.Row>
           <Grid.Column width={8}>
             <Header as="h3" style={{ fontSize: "2em" }}>
-              We Help Teams **
+              Collaboration Is Key
             </Header>
             <p style={{ fontSize: "1.33em" }}>
               Collaboration works best when everyone has at least a basic level
@@ -261,7 +261,7 @@ const HomepageLayout = props => (
               overall proficiency together across a broad set of skills.
             </p>
             <Header as="h3" style={{ fontSize: "2em" }}>
-              We Believe In Continuous Individual And Team Growth
+              Enable Your Team
             </Header>
             <p style={{ fontSize: "1.33em" }}>
               In the absence of a broadening skill set, people tend to

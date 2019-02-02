@@ -51,11 +51,42 @@ class TeamCreateUpdate extends React.Component {
 
   handleSkillChange = (e, { value }) => this.setState({ skills: value })
 
-  handlePeopleChange = (e, { value }) => {
-    this.setState({ members: value })
+  handlePeopleChange = (e, data) => {
+    console.log(e, data)
+  }
+
+  renderLabel = label => ({
+    content: label.text,
+    onRemove: () => {
+      console.log(label.key)
+      this.setState({
+        members: this.state.members.filter(member => member !== label.key),
+        removedMembers: [...this.state.removedMembers, label.key]
+      })
+    }
+  })
+
+  returnDropdownItems() {
+    return this.props.allPeople.allPeople.nodes.map(person => {
+      return {
+        key: person.id,
+        text: `${person.firstName} ${person.lastName}`,
+        value: person.id,
+        description: person.position,
+        image: person.userPictureUrl,
+        onClick: (event, data) => {
+          console.log(event, data)
+          this.setState({
+            members: [...this.state.members, data.value],
+            newMembers: [...this.state.newMembers, data.value]
+          })
+        }
+      }
+    })
   }
 
   render() {
+    console.log(this.state)
     if (this.props.allSkills.loading || this.props.allPeople.loading) {
       return (
         <Dimmer active inverted>
@@ -63,16 +94,27 @@ class TeamCreateUpdate extends React.Component {
         </Dimmer>
       )
     }
-    const peopleArr = this.props.allPeople.allPeople.nodes
-    const peopleOptions = peopleArr.map(person => {
-      return {
-        key: person.id,
-        text: `${person.firstName} ${person.lastName}`,
-        value: person.id,
-        description: person.position,
-        image: person.userPictureUrl
-      }
-    })
+    // const peopleArr = this.props.allPeople.allPeople.nodes
+    // const peopleOptions = peopleArr.map(person => {
+    //   return (
+    //     <Dropdown.Item
+    //       onClick={(event, data) => console.log(event, data)}
+    //       key={person.id}
+    //       text={`${person.firstname} ${person.lastName}`}
+    //       value={person.id}
+    //       description={person.position}
+    //       image={person.userPictureUrl}
+    //     />
+    //   )
+    //   // return {
+    //   //   key: person.id,
+    //   //   text: `${person.firstName} ${person.lastName}`,
+    //   //   value: person.id,
+    //   //   description: person.position,
+    //   //   image: person.userPictureUrl,
+
+    //   // }
+    // })
     const skillsArr = this.props.allSkills.allSkills.nodes
     let skillsOptions = skillsArr.map(skill => {
       return {
@@ -101,9 +143,11 @@ class TeamCreateUpdate extends React.Component {
             multiple
             selection
             search
-            value={this.state.members}
             onChange={this.handlePeopleChange}
-            options={peopleOptions}
+            // onLabelClick={(e, data) => console.log(data)}
+            renderLabel={this.renderLabel}
+            value={this.state.members}
+            options={this.returnDropdownItems()}
           />
         </Form.Field>
         <Form.Field>

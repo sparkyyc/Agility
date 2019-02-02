@@ -137,6 +137,7 @@ class TeamForm extends React.Component {
             </Form.Field>
           </div>
         </Form>
+        {/* todo pass existing team as argument */}
         {this.renderEditOrCreate()}
       </div>
     )
