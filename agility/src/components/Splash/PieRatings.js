@@ -94,7 +94,8 @@ class PieData extends React.Component {
                   color: "#fff",
                   textAlign: "center",
                   padding: "5px 0",
-                  borderRadius: "6px"
+                  borderRadius: "6px",
+                  color: "#942193",
                 }}
               >
                 {e.info}
