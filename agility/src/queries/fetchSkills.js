@@ -6,6 +6,7 @@ export default gql`
       nodes {
         id
         title: skillName
+        description
       }
     }
   }
