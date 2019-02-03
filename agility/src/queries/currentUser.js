@@ -7,6 +7,7 @@ export default gql`
       id
       firstName
       lastName
+      teamLead
     }
   }
 `

@@ -9,7 +9,8 @@ const authHelpers = require("./_helpers")
 init()
 
 const options = {
-  usernameField: "email"
+  usernameField: "email",
+  passReqToCallback: true
 }
 
 passport.use(

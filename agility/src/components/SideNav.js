@@ -138,6 +138,21 @@ class MiniDrawer extends React.Component {
     this.props.history.push(`/edit/`)
   }
 
+  adminAuth = () => {
+    if (this.props.currentUser.teamLead) {
+      return (
+        <Link to="/teamEdit">
+          <ListItem button>
+            <ListItemIcon>
+              <Icon>group_add</Icon>
+            </ListItemIcon>
+            <ListItemText primary="Create/Edit Team" />
+          </ListItem>
+        </Link>
+      )
+    }
+  }
+
   render() {
     const { classes, theme, children } = this.props
     const isMenuOpen = Boolean(this.state.anchorEl)
@@ -245,6 +260,7 @@ class MiniDrawer extends React.Component {
                 <ListItemText primary="Skill Catalog" />
               </ListItem>
             </Link>
+            {this.adminAuth()}
           </List>
           <Divider />
         </Drawer>

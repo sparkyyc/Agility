@@ -11,7 +11,7 @@ import "./App.css"
 
 const App = props => {
   return (
-    <SideNav>
+    <SideNav currentUser={props.currentUser}>
       <Switch>
         <Route
           path="/dashboard/:id"

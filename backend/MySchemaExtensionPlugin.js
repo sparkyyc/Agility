@@ -8,6 +8,7 @@ const PassportLoginPlugin = makeExtendSchemaPlugin(build => ({
       id: Int!
       firstName: String
       lastName: String
+      teamLead: Boolean
     }
     input RegisterInput {
       email: String!

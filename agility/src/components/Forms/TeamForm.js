@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import {
   Form,
-  Button,
+  Grid,
   Icon,
   Label,
   Search,
@@ -118,28 +118,31 @@ class TeamForm extends React.Component {
       teamOptions = this.state.teamOptions
     }
     return (
-      <div>
-        <Form>
-          <div>
-            <Form.Field>
-              <label>Search for existing team or create a new team</label>
-              <Dropdown
-                placeholder="Team Name"
-                fluid
-                selection
-                search
-                allowAdditions
-                value={this.state.teamName}
-                options={teamOptions}
-                onAddItem={this.handleAddition}
-                onChange={this.handleTeamChange}
-              />
-            </Form.Field>
-          </div>
-        </Form>
-        {/* todo pass existing team as argument */}
-        {this.renderEditOrCreate()}
-      </div>
+      <Grid columns={3}>
+        <Grid.Column width={4} />
+        <Grid.Column width={8}>
+          <Form style={{ marginBottom: "10px" }}>
+            <div>
+              <Form.Field>
+                <label>Search for existing team or create a new team</label>
+                <Dropdown
+                  placeholder="Team Name"
+                  fluid
+                  selection
+                  search
+                  allowAdditions
+                  value={this.state.teamName}
+                  options={teamOptions}
+                  onAddItem={this.handleAddition}
+                  onChange={this.handleTeamChange}
+                />
+              </Form.Field>
+            </div>
+          </Form>
+          {/* todo pass existing team as argument */}
+          {this.renderEditOrCreate()}
+        </Grid.Column>
+      </Grid>
     )
   }
 }

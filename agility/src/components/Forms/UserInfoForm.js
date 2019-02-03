@@ -49,7 +49,7 @@ class UserInfoForm extends React.Component {
     this.setState({ team: data.value })
   }
 
-  toggle = () => this.setState({ checked: !this.state.teamLead })
+  toggle = () => this.setState({ teamLead: !this.state.teamLead })
 
   renderErrors = () => {
     return this.state.errors.map(error => {
@@ -58,6 +58,7 @@ class UserInfoForm extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     if (this.props.allTeams.loading) {
       return (
         <Dimmer active inverted>

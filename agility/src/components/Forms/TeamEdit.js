@@ -4,7 +4,6 @@ import {
   Form,
   Dimmer,
   Loader,
-  Message,
   Input,
   Dropdown
 } from "semantic-ui-react"
