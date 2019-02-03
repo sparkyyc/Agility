@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { graphql } from "react-apollo"
+import { graphql, compose } from "react-apollo"
 import { Grid, Header } from "semantic-ui-react"
 
 import SkillList from "./SkillList"
@@ -7,6 +7,7 @@ import SkillDetail from "./SkillDetail"
 import SkillAdmin from "./SkillAdmin"
 
 import fetchSkills from "../../queries/fetchSkills"
+import FetchPillars from "../../queries/FetchPillars"
 
 class Skills extends Component {
   state = {
@@ -18,16 +19,21 @@ class Skills extends Component {
   }
 
   renderIfAdmin() {
-    if (this.props.currentUser.teamLead) {
-      return <SkillAdmin skill={this.state.activeSkill} />
+    if (this.props.currentUser.teamLead && this.state.activeSkill) {
+      return (
+        <SkillAdmin
+          skill={this.state.activeSkill}
+          pillars={this.props.fetchPillars.allPillars}
+        />
+      )
     } else {
       return <SkillDetail skill={this.state.activeSkill} />
     }
   }
 
   render() {
-    const { allSkills } = this.props.data
-
+    const { allSkills } = this.props.fetchSkills
+    console.log(this.props)
     return (
       <div>
         <Grid columns={2} divided>
@@ -45,4 +51,7 @@ class Skills extends Component {
   }
 }
 
-export default graphql(fetchSkills)(Skills)
+export default compose(
+  graphql(FetchPillars, { name: "fetchPillars" }),
+  graphql(fetchSkills, { name: "fetchSkills" })
+)(Skills)

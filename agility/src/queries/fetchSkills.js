@@ -7,6 +7,10 @@ export default gql`
         id
         title: skillName
         description
+        pillarId
+        pillarByPillarId {
+          title
+        }
       }
     }
   }
