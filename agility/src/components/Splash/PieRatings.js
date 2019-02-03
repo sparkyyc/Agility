@@ -1,8 +1,8 @@
-import React from "react"
-import { render } from "react-dom"
-import { ResponsivePie } from "@nivo/pie"
-import { linearGradientDef } from "@nivo/core"
-import { Label } from "semantic-ui-react"
+import React from "react";
+import { render } from "react-dom";
+import { ResponsivePie } from "@nivo/pie";
+import { linearGradientDef } from "@nivo/core";
+import { Label } from "semantic-ui-react";
 
 // make sure parent container have a defined height when using responsive component,
 // otherwise height will be 0 and no chart will be rendered.
@@ -47,7 +47,7 @@ const data = [
     info:
       "Unquestioned competence in a skill, can explain underlying forces to others"
   }
-]
+];
 
 class PieData extends React.Component {
   render() {
@@ -89,12 +89,18 @@ class PieData extends React.Component {
             return (
               <span
                 style={{
-                  color: "#942193"
+                  width: "120px",
+                  backgroundColor: "black",
+                  color: "#fff",
+                  textAlign: "center",
+                  padding: "5px 0",
+                  borderRadius: "6px",
+                  color: "#942193",
                 }}
               >
                 {e.info}
               </span>
-            )
+            );
           }}
           defs={[
             {
@@ -172,8 +178,8 @@ class PieData extends React.Component {
           ]}
         />
       </div>
-    )
+    );
   }
 }
 
-export default PieData
+export default PieData;
