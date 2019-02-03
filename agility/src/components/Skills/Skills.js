@@ -15,6 +15,7 @@ class Skills extends Component {
   }
 
   setActiveSkill(skill) {
+    console.log(skill)
     this.setState({ activeSkill: skill })
   }
 
@@ -24,6 +25,7 @@ class Skills extends Component {
         <SkillAdmin
           skill={this.state.activeSkill}
           pillars={this.props.fetchPillars.allPillars}
+          setActiveSkill={this.setActiveSkill.bind(this)}
         />
       )
     } else {

@@ -19,9 +19,12 @@ export default gql`
     ) {
       skill {
         id
-        skillName
+        title: skillName
         description
         pillarId
+        pillarByPillarId {
+          title
+        }
       }
     }
   }

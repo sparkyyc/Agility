@@ -29,19 +29,22 @@ class SkillAdmin extends React.Component {
 
   onSubmit = (event, data) => {
     event.preventDefault()
-    this.props.mutate({
-      variables: {
-        id: this.props.skill.id,
-        skillName: this.state.name,
-        description: this.state.description,
-        pillarId: this.state.pillar
-      }
-    })
-    // .then(() => {
-    //   this.setState({
-    //     editClicked: !this.state.editClicked
-    //   })
-    // })
+    this.props
+      .mutate({
+        variables: {
+          id: this.props.skill.id,
+          skillName: this.state.name,
+          description: this.state.description,
+          pillarId: this.state.pillar
+        }
+      })
+      .then(res => {
+        console.log(res.data.updateSkillById.skill)
+        this.setState({
+          editClicked: !this.state.editClicked
+        })
+        this.props.setActiveSkill(res.data.updateSkillById.skill)
+      })
   }
 
   renderForm() {
