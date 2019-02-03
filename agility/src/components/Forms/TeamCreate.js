@@ -44,6 +44,12 @@ class TeamCreateUpdate extends React.Component {
 
   handlePeopleChange = (e, { value }) => this.setState({ members: value })
 
+  onSubmit = event => {
+    event.preventDefault()
+    const { description, members, skills } = this.state
+    this.props.onSubmit(description, members, skills)
+  }
+
   render() {
     if (this.props.allSkills.loading || this.props.allPeople.loading) {
       return (

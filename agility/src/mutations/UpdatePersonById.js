@@ -3,8 +3,8 @@ import gql from "graphql-tag"
 export default gql`
   mutation UpdatePerson(
     $id: Int!
-    $firstName: String!
-    $lastName: String!
+    $firstName: String
+    $lastName: String
     $userPictureUrl: String
     $position: String
     $teamId: Int

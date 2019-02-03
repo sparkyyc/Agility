@@ -13,13 +13,14 @@ import {
   Segment,
   Dropdown
 } from "semantic-ui-react"
-import { graphql, ApolloConsumer, compose } from "react-apollo"
+import { graphql, compose } from "react-apollo"
 import _ from "lodash"
 import FetchTeams from "../../queries/fetchTeamsAsTitle"
 import UpdatePersonById from "../../mutations/UpdatePersonById"
 import CreateTeam from "../../mutations/CreateTeam"
 import CreateTeamSkill from "../../mutations/CreateTeamSkill"
 import UpdateTeamById from "../../mutations/UpdateTeamById"
+import DeleteTeamSkill from "../../mutations/DeleteTeamSkill"
 import TeamCreate from "./TeamCreate"
 import TeamEdit from "./TeamEdit"
 
@@ -56,7 +57,15 @@ class TeamForm extends React.Component {
     // if team doesn't exist clear fields?
   }
 
-  onSubmit = (description, members, skills) => {
+  onSubmit = (
+    description,
+    members,
+    skills,
+    newMembers,
+    removedMembers,
+    newSkills,
+    removedSkills
+  ) => {
     // if team does not exist create team
     if (!this.state.existingTeam) {
       this.props
@@ -82,24 +91,56 @@ class TeamForm extends React.Component {
       this.props.updateTeam({
         variables: { id: this.state.existingTeam.id, description }
       })
-      // update each person picked for team
-      // only update new additions/remove
-
+      // // update each person picked for team
+      // // only update new additions/remove
+      const membersToAdd = newMembers.filter(el => !removedMembers.includes(el))
+      const membersToRemove = this.state.existingTeam.peopleByTeamId.nodes.filter(
+        el => removedMembers.includes(el.id)
+      )
+      membersToAdd.forEach(member => {
+        this.props.updatePerson({
+          variables: { id: member, teamId: this.state.existingTeam.id }
+        })
+      })
+      membersToRemove.forEach(member => {
+        this.props.updatePerson({
+          variables: { id: member.id, teamId: null }
+        })
+      })
       // create team skill association
       // only add new skills
+      const skillsToAdd = newSkills.filter(el => !removedSkills.includes(el))
+      const skillsToRemove = this.state.existingTeam.teamSkillsByTeamId.nodes.filter(
+        el => removedSkills.includes(el.skillBySkillId.id)
+      )
+      skillsToAdd.forEach(skill => {
+        this.props.createTeamSkill({
+          variables: { teamId: this.state.existingTeam.id, skillId: skill }
+        })
+      })
+      skillsToRemove.forEach(skill => {
+        this.props.deleteTeamSkill({
+          variables: { id: skill.id }
+        })
+      })
     }
   }
 
   renderEditOrCreate() {
     if (this.state.existingTeam) {
-      return <TeamEdit selectedTeam={this.state.existingTeam} />
+      return (
+        <TeamEdit
+          selectedTeam={this.state.existingTeam}
+          onSubmit={this.onSubmit}
+        />
+      )
     } else {
-      return <TeamCreate />
+      return <TeamCreate onSubmit={this.onSubmit} />
     }
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.state)
 
     if (this.props.allTeams.loading) {
       return (
@@ -141,7 +182,6 @@ class TeamForm extends React.Component {
               </Form.Field>
             </div>
           </Form>
-          {/* todo pass existing team as argument */}
           {this.renderEditOrCreate()}
         </Grid.Column>
       </Grid>
@@ -154,5 +194,6 @@ export default compose(
   graphql(CreateTeam, { name: "createTeam" }),
   graphql(UpdatePersonById, { name: "updatePerson" }),
   graphql(CreateTeamSkill, { name: "createTeamSkill" }),
-  graphql(UpdateTeamById, { name: "updateTeam" })
+  graphql(UpdateTeamById, { name: "updateTeam" }),
+  graphql(DeleteTeamSkill, { name: "deleteTeamSkill" })
 )(TeamForm)

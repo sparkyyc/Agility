@@ -16,6 +16,7 @@ export default gql`
         }
         teamSkillsByTeamId {
           nodes {
+            id
             skillBySkillId {
               skillName
               id
