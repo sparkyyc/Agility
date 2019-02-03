@@ -15,6 +15,7 @@ import {
 import { classNames } from "classnames"
 
 import "./DashTeam.css"
+import Avatar from "../Avatar"
 
 class DashTeam extends React.Component {
   constructor(props) {
@@ -44,8 +45,9 @@ class DashTeam extends React.Component {
                     size="tiny"
                     rounded
                     bordered
-                    src={userPictureUrl}
-                  />
+                  >
+                    <Avatar person={{ firstName, lastName, id, size: "3em" }} />
+                  </Item.Image>
                   <Item.Content verticalAlign="top">
                     <Item.Header
                       key={id}

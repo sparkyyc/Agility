@@ -10,12 +10,12 @@ import {
   Button,
   Message
 } from "semantic-ui-react"
+import Avatar from "../Avatar"
 
 class Teammates extends React.Component {
   renderTeammates() {
     const teammatesArray = this.props.teamInfo.peopleByTeamId.nodes
     const userId = this.props.userId
-
 
     return teammatesArray.map(
       ({ id, firstName, lastName, position, userPictureUrl, email }) => {
@@ -37,8 +37,9 @@ class Teammates extends React.Component {
                     size="tiny"
                     rounded
                     bordered
-                    src={userPictureUrl}
-                  />
+                  >
+                    <Avatar person={{ firstName, lastName, id, size: "3em" }} />
+                  </Item.Image>
                   <Item.Content verticalAlign="top">
                     <Item.Header
                       key={id}

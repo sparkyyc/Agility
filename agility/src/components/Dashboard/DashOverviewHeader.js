@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   Image,
   Segment,
@@ -10,9 +10,10 @@ import {
   Label,
   Icon,
   Statistic
-} from "semantic-ui-react";
+} from "semantic-ui-react"
 
-import "./DashOverview.css";
+import "./DashOverview.css"
+import Avatar from "../Avatar"
 
 class DashOverviewHeader extends React.Component {
   // **TODO**
@@ -29,17 +30,17 @@ class DashOverviewHeader extends React.Component {
           </Label.Detail>
         </Label>
       </Item.Extra>
-    ) : null;
+    ) : null
   }
 
   renderSkillAverage() {
-    let totalSkill = 0;
-    let ratingsList = this.props.userInfo.ratingsByRatingFor.nodes;
+    let totalSkill = 0
+    let ratingsList = this.props.userInfo.ratingsByRatingFor.nodes
     for (let item of ratingsList) {
-      totalSkill += item.rating;
+      totalSkill += item.rating
     }
 
-    return (totalSkill / ratingsList.length).toFixed(2);
+    return (totalSkill / ratingsList.length).toFixed(2)
   }
 
   render() {
@@ -51,14 +52,16 @@ class DashOverviewHeader extends React.Component {
       position,
       ratingsByRatingFor,
       email
-    } = this.props.userInfo;
+    } = this.props.userInfo
 
     return (
       <Grid columns="2">
         <Grid.Column width="8">
           <Item.Group>
             <Item style={{ fontSize: "1.5em" }}>
-              <Item.Image src={userPictureUrl} size="small" rounded />
+              <Item.Image size="small" rounded>
+                <Avatar person={{ firstName, lastName, id, size: "5em" }} />
+              </Item.Image>
               <Item.Content>
                 <Item.Header>
                   {firstName} {lastName}
@@ -78,8 +81,8 @@ class DashOverviewHeader extends React.Component {
           </Statistic.Group>
         </Grid.Column>
       </Grid>
-    );
+    )
   }
 }
 
-export default DashOverviewHeader;
+export default DashOverviewHeader
