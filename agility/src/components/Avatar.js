@@ -12,7 +12,7 @@ const Avatar = props => {
   const initials = `${props.person.firstName[0]} ${props.person.lastName[0]}`
   return (
     <Label
-      color={randomColor()}
+      color="grey"
       key={props.person.id}
       style={{
         height: "100%",

@@ -10,49 +10,53 @@ import { Label } from "semantic-ui-react"
 
 const data = [
   {
-    id: "0",
-    label: "Questioning",
+    id: "Product Sense",
+    label: "Product Sense",
     value: 20,
-    color: "hsl(271, 70%, 50%)",
-    info: "Not sure what the skill is, or why/when it would be needed."
+    color: "hsl(271, 70%, 50%)"
   },
   {
-    id: "1",
-    label: "Learning",
+    id: "Collaboration",
+    label: "Collaboratio",
     value: 20,
-    color: "hsl(152, 70%, 50%)",
-    info: "Know what the skill is, no first-hand experience."
+    color: "hsl(152, 70%, 50%)"
   },
   {
-    id: "2",
-    label: "Practicing",
+    id: "Focus on Business Value",
+    label: "Focus on Business Value",
     value: 20,
-    color: "hsl(300, 70%, 50%)",
-    info:
-      "Actively using skill, can reference more than one resource that you've used to learn about this skill."
+    color: "hsl(300, 70%, 50%)"
   },
   {
-    id: "3",
-    label: "Journeying",
+    id: "Supportive Culture",
+    label: "Supportive Culture",
     value: 20,
-    color: "hsl(352, 70%, 50%)",
-    info:
-      "Has used the skill in multiple environments, peers recognize this person's competence."
+    color: "hsl(352, 70%, 50%)"
   },
   {
-    id: "4",
-    label: "Mastering",
+    id: "Confidence",
+    label: "Confidence",
     value: 20,
-    color: "hsl(118, 70%, 50%)",
-    info:
-      "Unquestioned competence in a skill, can explain underlying forces to others"
+    color: "hsl(118, 70%, 50%)"
+  },
+  {
+    id: "Technical Excellence",
+    label: "Technical Excellence",
+    value: 20,
+    color: "hsl(118, 70%, 50%)"
+  },
+  {
+    id: "Self-Improvement",
+    label: "Self-Improvement",
+    value: 20,
+    color: "hsl(118, 70%, 50%)"
   }
 ]
 
 class PieData extends React.Component {
   render() {
     return (
-      <div style={{ height: "400px" }}>
+      <div style={{ height: "225px", width: "100%" }}>
         <ResponsivePie
           data={data}
           margin={{
@@ -62,7 +66,7 @@ class PieData extends React.Component {
             left: 80
           }}
           startAngle={-180}
-          innerRadius={0.15}
+          innerRadius={0.68}
           padAngle={2}
           cornerRadius={4}
           colors="blue_purple"
@@ -70,6 +74,7 @@ class PieData extends React.Component {
           borderWidth={1}
           borderColor="inherit:darker(0.2)"
           radialLabel="label"
+          enableRadialLabels={false}
           radialLabelsSkipAngle={10}
           radialLabelsTextXOffset={6}
           radialLabelsTextColor="#942193"
@@ -80,6 +85,7 @@ class PieData extends React.Component {
           radialLabelsLinkColor="inherit"
           enableSlicesLabels={true}
           sliceLabel="id"
+          enableSlicesLabels={false}
           slicesLabelsSkipAngle={10}
           slicesLabelsTextColor="#333333"
           animate={true}
@@ -92,7 +98,7 @@ class PieData extends React.Component {
                   color: "#942193"
                 }}
               >
-                {e.info}
+                {e.id}
               </span>
             )
           }}

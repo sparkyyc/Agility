@@ -81,7 +81,8 @@ class DashRatings extends React.Component {
               <Popup
                 flowing
                 hoverable
-                position="right center"
+                position="top center"
+                verticalOffset={30}
                 trigger={
                   <Rating
                     maxRating={5}

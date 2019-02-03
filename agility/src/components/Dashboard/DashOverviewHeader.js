@@ -14,6 +14,8 @@ import {
 
 import "./DashOverview.css"
 import Avatar from "../Avatar"
+import Chart from "./PillarChart"
+import Pie from "./PillarPie"
 
 class DashOverviewHeader extends React.Component {
   // **TODO**
@@ -73,12 +75,13 @@ class DashOverviewHeader extends React.Component {
           </Item.Group>
         </Grid.Column>
         <Grid.Column width="8" verticalAlign="middle">
-          <Statistic.Group widths="1">
+          {/* <Statistic.Group widths="1">
             <Statistic size="large">
               <Statistic.Value>{this.renderSkillAverage()}</Statistic.Value>
               <Statistic.Label>Average Skill Rating</Statistic.Label>
             </Statistic>
-          </Statistic.Group>
+          </Statistic.Group> */}
+          <Pie />
         </Grid.Column>
       </Grid>
     )
