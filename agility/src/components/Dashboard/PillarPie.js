@@ -30,25 +30,25 @@ const data = [
   {
     id: "Supportive Culture",
     label: "Supportive Culture",
-    value: 20,
+    value: 10,
     color: "hsl(352, 70%, 50%)"
   },
   {
     id: "Confidence",
     label: "Confidence",
-    value: 20,
+    value: 10,
     color: "hsl(118, 70%, 50%)"
   },
   {
     id: "Technical Excellence",
     label: "Technical Excellence",
-    value: 20,
+    value: 10,
     color: "hsl(118, 70%, 50%)"
   },
   {
     id: "Self-Improvement",
     label: "Self-Improvement",
-    value: 20,
+    value: 10,
     color: "hsl(118, 70%, 50%)"
   }
 ]
@@ -66,7 +66,7 @@ class PieData extends React.Component {
             left: 80
           }}
           startAngle={-180}
-          innerRadius={0.68}
+          innerRadius={0.6}
           padAngle={2}
           cornerRadius={4}
           colors="blue_purple"
@@ -84,8 +84,8 @@ class PieData extends React.Component {
           radialLabelsLinkStrokeWidth={1}
           radialLabelsLinkColor="inherit"
           enableSlicesLabels={true}
-          sliceLabel="id"
-          enableSlicesLabels={false}
+          sliceLabel="value"
+          //   enableSlicesLabels={false}
           slicesLabelsSkipAngle={10}
           slicesLabelsTextColor="#333333"
           animate={true}
