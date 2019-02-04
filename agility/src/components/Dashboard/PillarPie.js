@@ -17,7 +17,7 @@ const data = [
   },
   {
     id: "Collaboration",
-    label: "Collaboratio",
+    label: "Collaboration",
     value: 20,
     color: "hsl(152, 70%, 50%)"
   },
@@ -54,19 +54,17 @@ const data = [
 ]
 
 class PieData extends React.Component {
+  calcData = () => {
+      
+  }
+
   render() {
     return (
-      <div style={{ height: "225px", width: "100%" }}>
+      <div style={{ height: "150px", width: "150px" }}>
         <ResponsivePie
           data={data}
-          margin={{
-            top: 40,
-            right: 80,
-            bottom: 80,
-            left: 80
-          }}
           startAngle={-180}
-          innerRadius={0.6}
+          innerRadius={0.5}
           padAngle={2}
           cornerRadius={4}
           colors="blue_purple"
@@ -107,73 +105,101 @@ class PieData extends React.Component {
               id: "gradientA",
               type: "linearGradient",
               colors: [
-                { offset: 0, color: "#77a1d3" },
-                { offset: 100, color: "#79cbca" }
+                { offset: 0, color: "#F7FCFD" },
+                { offset: 100, color: "#E0ECF4" }
               ]
             },
             {
               id: "gradientB",
               type: "linearGradient",
               colors: [
-                { offset: 0, color: "#79cbca" },
-                { offset: 100, color: "#e684ae" }
+                { offset: 0, color: "#E0ECF4" },
+                { offset: 100, color: "#BFD2E6" }
               ]
             },
             {
               id: "gradientC",
               type: "linearGradient",
               colors: [
-                { offset: 0, color: "#e684ae" },
-                { offset: 100, color: "#77a1d3" }
+                { offset: 0, color: "#BFD2E6" },
+                { offset: 100, color: "#9EBBDA" }
               ]
             },
             {
               id: "gradientD",
               type: "linearGradient",
               colors: [
-                { offset: 0, color: "#79cbca" },
-                { offset: 100, color: "#77a1d3" }
+                { offset: 0, color: "#9EBBDA" },
+                { offset: 100, color: "#8B96C6" }
               ]
             },
             {
               id: "gradientE",
               type: "linearGradient",
               colors: [
-                { offset: 0, color: "#e684ae" },
-                { offset: 100, color: "#79cbca" }
+                { offset: 0, color: "#8B96C6" },
+                { offset: 100, color: "#8C6BB0" }
+              ]
+            },
+            {
+              id: "gradientF",
+              type: "linearGradient",
+              colors: [
+                { offset: 0, color: "#8C6BB0" },
+                { offset: 100, color: "#88419D" }
+              ]
+            },
+            {
+              id: "gradientG",
+              type: "linearGradient",
+              colors: [
+                { offset: 0, color: "#88419D" },
+                { offset: 100, color: "#F7FCFD" }
               ]
             }
           ]}
           fill={[
             {
               match: {
-                id: "0"
+                id: "Product Sense"
               },
               id: "gradientA"
             },
             {
               match: {
-                id: "1"
+                id: "Collaboration"
               },
               id: "gradientB"
             },
             {
               match: {
-                id: "2"
+                id: "Focus on Business Value"
               },
               id: "gradientC"
             },
             {
               match: {
-                id: "3"
+                id: "Supportive Culture"
               },
               id: "gradientD"
             },
             {
               match: {
-                id: "4"
+                id: "Confidence"
               },
               id: "gradientE"
+            },
+            {
+              match: {
+                id: "Technical Excellence"
+              },
+              id: "gradientF"
+            },
+            {
+              match: {
+                id: "Self-Improvement"
+              },
+              id: "gradientG"
             }
           ]}
         />

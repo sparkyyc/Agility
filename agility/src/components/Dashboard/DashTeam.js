@@ -103,11 +103,11 @@ class DashTeam extends React.Component {
     const { name, id } = this.props.teammates
     return (
       <div>
-        <Header as="h3">
+        <Header as="h3" onClick={() => this.props.history.push(`/team/${id}`)}>
           <Icon name="group" />
           <Header.Content
+            style={{ color: "black" }}
             as="a"
-            onClick={() => this.props.history.push(`/team/${id}`)}
           >
             Team {name}
           </Header.Content>

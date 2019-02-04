@@ -75,12 +75,6 @@ class DashOverviewHeader extends React.Component {
           </Item.Group>
         </Grid.Column>
         <Grid.Column width="8" verticalAlign="middle">
-          {/* <Statistic.Group widths="1">
-            <Statistic size="large">
-              <Statistic.Value>{this.renderSkillAverage()}</Statistic.Value>
-              <Statistic.Label>Average Skill Rating</Statistic.Label>
-            </Statistic>
-          </Statistic.Group> */}
           <Pie />
         </Grid.Column>
       </Grid>

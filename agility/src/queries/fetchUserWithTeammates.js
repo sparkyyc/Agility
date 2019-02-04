@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from "graphql-tag"
 
 export default gql`
   query FetchUserAndMates($id: Int!) {
@@ -34,9 +34,13 @@ export default gql`
           skillBySkillId {
             id
             skillName
+            pillarByPillarId {
+              id
+              title
+            }
           }
         }
       }
     }
   }
-`;
+`
