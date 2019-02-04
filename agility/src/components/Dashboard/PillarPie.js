@@ -113,7 +113,6 @@ class PieData extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const data = this.calcData()
     console.log(data)
     return (
