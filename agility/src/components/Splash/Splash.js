@@ -322,7 +322,7 @@ const HomepageLayout = props => (
               </Table.Cell>
               <Table.Cell>Questioning</Table.Cell>
               <Table.Cell>
-                Not sure what the skill is, or why/when it would be needed.
+                Before one decides to invest in learning a new skill, it is natural to be skeptical, to evaluate the potential benefits before investigating.  Someone who is  questioning change should be engaged and an attempt to understand the skill being questioned.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -332,7 +332,7 @@ const HomepageLayout = props => (
               </Table.Cell>
               <Table.Cell>Learning</Table.Cell>
               <Table.Cell>
-                know what the skill is, no first-hand experience
+                Individuals who have been exposed to a skill, but do not yet have first-hand experience with it, are Learning.  They may continue learning through reading or conversation, through a formal class or casual presentation at a local user's group.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -342,10 +342,7 @@ const HomepageLayout = props => (
               </Table.Cell>
               <Table.Cell>Practicing</Table.Cell>
               <Table.Cell>
-                actively using a skill at home, in a class or work environment;
-                you're here if you can reference more than one resource that
-                you've used to learn about this skill AND if you've used this in
-                the last 30 days
+                At this level, one has advanced beyond abstract learning and is now practicing the skill in a ‘safe’ environment.  They may be taking a course with hands-on exercises, recreating examples from a book, or doing work under the supervision of a more skilled team member.  Practicing represents the first big step from abstract to concrete.  A wise organization will not let someone Practice on their own.  Someone who is Practicing does not yet know what they do not know, and therefore cannot judge the limits of safely applying their skills.  Further improvement comes as individuals seek advice and feedback from mentors in the Agile community.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -355,10 +352,11 @@ const HomepageLayout = props => (
               </Table.Cell>
               <Table.Cell>Journeying</Table.Cell>
               <Table.Cell>
-                has used the skill in multiple environments, at least one of
-                which is work; peers recognize this person's competence; you're
-                here if peers from two different environments can vouch for you
-                AND you are practicing
+                An individual who is experimenting with the application of a particular skill in various contexts is Journeying.  This person has already practiced the skill in at least two different environments (two clients, two employers, or work and class), and peers would consider this person as competent and knowledgeable in the specific skill.  They can work on their own, or to increase the competence of a team.  A Team member of a lower skill level will learn from them, a team member of a higher skill level will recognize their expertise and practical knowledge.
+
+One cannot be taught the spirit of Journeying--one must simply thirst for improvement.  Regardless of the skill category, one must constantly practice current techniques, seek out new and better ones, and share the skill with team mates, to keep Journeying.
+
+This is not all.  One who is Journeying supports developments in the skill, by trying and validating new ideas that could potentially improve the state of the art--that is, they welcome people who are Contributing, whether these ideas come from people have become experts at the craft or not.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
@@ -368,9 +366,15 @@ const HomepageLayout = props => (
               </Table.Cell>
               <Table.Cell>Mastering</Table.Cell>
               <Table.Cell>
-                unquestioned competence in a skill, can explain underlying
-                forces to others; you've practiced this skill along side other
-                experts AND you are journeying
+                Someone who is Mastering a skill continues Journeying, Practicing, and Learning--but this person also possesses unquestioned competence in the particular skill.  They know it cold; it is second nature to them.  The person can intuit the limits of applying the skill, and can foresee new applications in new environments.
+
+But, it does not stop there.  Mastering includes bringing up the skill level of one's team mates.  They do this in several ways. 
+
+They serve as an example of proper practice.  If you want to know how it is done, observe this expert.
+
+They partner with other team members and actively share their knowledge and experience.
+
+They seek out teachable moments.  When asked a question, they prefer to engage in a dialog that will lead the questioner to an answer, rather than making a pronouncement.
               </Table.Cell>
             </Table.Row>
           </Table.Body>
