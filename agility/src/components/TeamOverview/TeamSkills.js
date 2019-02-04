@@ -7,8 +7,15 @@ import {
   Card,
   Feed,
   Divider,
-  Icon
+  Icon,
+  Image
 } from "semantic-ui-react"
+import { withRouter } from "react-router-dom"
+import symbol0 from "../../assets/skill_0.png"
+import symbol1 from "../../assets/skill_1.png"
+import symbol2 from "../../assets/skill_2.png"
+import symbol3 from "../../assets/skill_3.png"
+import symbol4 from "../../assets/skill_4.png"
 
 const calcAvg = (oldAvg, count, newNum) => {
   return (oldAvg * count + newNum) / (count + 1)
@@ -40,6 +47,28 @@ class TeamSkills extends React.Component {
 
     const index = Math.floor(Math.random() * colors.length)
     return colors[index]
+  }
+
+  renderSymbol(average) {
+    switch (true) {
+      case average <= 1:
+        return <Image src={symbol0} size="mini" centered />
+        break
+      case average <= 2:
+        return <Image src={symbol1} size="mini" centered />
+        break
+      case average <= 3:
+        return <Image src={symbol2} size="mini" centered />
+        break
+      case average <= 4:
+        return <Image src={symbol3} size="mini" centered />
+        break
+      case average <= 5:
+        return <Image src={symbol4} size="mini" centered />
+        break
+      default:
+        return null
+    }
   }
 
   hashUsersRatings() {
@@ -128,12 +157,10 @@ class TeamSkills extends React.Component {
         } = teamHash[person]
         return (
           <Feed.Event key={id}>
-            <Feed.Label>
-              <Icon name="chart pie" />
-            </Feed.Label>
+            <Feed.Label>{this.renderSymbol(skills[skill].avg)}</Feed.Label>
             <Feed.Content>
               <Feed.Summary>
-                <a>
+                <a onClick={() => this.props.history.push(`/dashboard/${id}`)}>
                   {firstName} {lastName}
                 </a>{" "}
                 has a {skills[skill].avg} in {skill}
@@ -171,6 +198,7 @@ class TeamSkills extends React.Component {
                 <Grid centered divided columns={2}>
                   <Grid.Column textAlign="center">
                     <Header as="h4">Team Average</Header>
+                    {this.renderSymbol(avg)}
                   </Grid.Column>
                   <Grid.Column textAlign="center">
                     <Header as="h4">Average-Rating:</Header>
@@ -192,4 +220,4 @@ class TeamSkills extends React.Component {
   }
 }
 
-export default TeamSkills
+export default withRouter(TeamSkills)

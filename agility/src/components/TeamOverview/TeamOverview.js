@@ -20,10 +20,13 @@ class TeamOverview extends React.Component {
         <Header as="h2" icon textAlign="center">
           <Icon name="users" circular />
           <Header.Content>{this.props.data.teamById.name}</Header.Content>
+          <Header.Subheader>
+            {this.props.data.teamById.description}
+          </Header.Subheader>
         </Header>
         <Grid columns={3}>
           <Grid.Column>
-            <Header>Average Team Skills(Haves)</Header>
+            <Header>Average Team Skills</Header>
             <TeamSkills teamInfo={this.props.data.teamById} />
           </Grid.Column>
           <Grid.Column>

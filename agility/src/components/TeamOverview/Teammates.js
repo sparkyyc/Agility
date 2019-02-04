@@ -10,6 +10,7 @@ import {
   Button,
   Message
 } from "semantic-ui-react"
+import { withRouter } from "react-router-dom"
 import Avatar from "../Avatar"
 
 class Teammates extends React.Component {
@@ -88,4 +89,4 @@ class Teammates extends React.Component {
   }
 }
 
-export default Teammates
+export default withRouter(Teammates)

@@ -63,6 +63,7 @@ class TeamCreateUpdate extends React.Component {
       })
       .then(res => {
         console.log(res)
+        console.log(this.state.skillOptions, value, options)
         this.setState({
           skillOptions: [{ text: value, value }, ...options],
           newSkills: [...this.state.newSkills, value]

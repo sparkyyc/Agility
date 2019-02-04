@@ -14,6 +14,7 @@ import {
   Dropdown
 } from "semantic-ui-react"
 import { graphql, compose } from "react-apollo"
+import { withRouter } from "react-router-dom"
 import _ from "lodash"
 import FetchTeams from "../../queries/fetchTeamsAsTitle"
 import UpdatePersonById from "../../mutations/UpdatePersonById"
@@ -80,11 +81,15 @@ class TeamForm extends React.Component {
             })
           })
           // create team skill association
-          skills.forEach(skill => {
-            this.props.createTeamSkill({
-              variables: { teamId: res.team.id, skillId: skill.id }
+          skills
+            .forEach(skill => {
+              this.props.createTeamSkill({
+                variables: { teamId: res.team.id, skillId: skill.id }
+              })
             })
-          })
+            .then(() => {
+              this.props.history.push(`/team/${res.team.id}`)
+            })
         })
     } else {
       // if team exists update desc
@@ -123,6 +128,7 @@ class TeamForm extends React.Component {
           variables: { id: skill.id }
         })
       })
+      this.props.history.push(`/team/${this.state.existingTeam.id}`)
     }
   }
 
@@ -189,11 +195,13 @@ class TeamForm extends React.Component {
   }
 }
 
-export default compose(
-  graphql(FetchTeams, { name: "allTeams" }),
-  graphql(CreateTeam, { name: "createTeam" }),
-  graphql(UpdatePersonById, { name: "updatePerson" }),
-  graphql(CreateTeamSkill, { name: "createTeamSkill" }),
-  graphql(UpdateTeamById, { name: "updateTeam" }),
-  graphql(DeleteTeamSkill, { name: "deleteTeamSkill" })
-)(TeamForm)
+export default withRouter(
+  compose(
+    graphql(FetchTeams, { name: "allTeams" }),
+    graphql(CreateTeam, { name: "createTeam" }),
+    graphql(UpdatePersonById, { name: "updatePerson" }),
+    graphql(CreateTeamSkill, { name: "createTeamSkill" }),
+    graphql(UpdateTeamById, { name: "updateTeam" }),
+    graphql(DeleteTeamSkill, { name: "deleteTeamSkill" })
+  )(TeamForm)
+)

@@ -15,7 +15,7 @@ const createFakeUser = () => ({
   email: faker.internet.email(),
   position: faker.name.jobTitle(),
   team_id: randomTeam(),
-  user_picture_url: faker.image.imageUrl()
+  // user_picture_url: faker.image.imageUrl()
 })
 
 exports.seed = function(knex, Promise) {
@@ -28,23 +28,23 @@ exports.seed = function(knex, Promise) {
       position: "full-stack developer",
       teamLead: true,
       team_id: 1,
-      user_picture_url: "https://www.placecage.com/c/300/300"
+      // user_picture_url: "https://www.placecage.com/c/300/300"
     },
     {
       first_name: "Austin",
       last_name: "Tindle",
       email: "austin@test.com",
       position: "front-end developer",
-      team_id: 1,
-      user_picture_url: "https://www.placecage.com/c/300/300"
+      team_id: null,
+      // user_picture_url: "https://www.placecage.com/c/300/300"
     },
     {
       first_name: "Veech",
       last_name: "Big",
       email: "veech@test.com",
       position: "backend developer",
-      team_id: 2,
-      user_picture_url: "https://www.placecage.com/c/300/300"
+      team_id: null,
+      // user_picture_url: "https://www.placecage.com/c/300/300"
     }
   ]
   const desiredUsers = 50

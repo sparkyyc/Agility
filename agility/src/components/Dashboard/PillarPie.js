@@ -14,10 +14,11 @@ class PieData extends React.Component {
     let hash = {}
     ratingsArr.forEach(ratingByAcc => {
       let { skillName, id, pillarByPillarId } = ratingByAcc.skillBySkillId
+      const pillar = pillarByPillarId ? pillarByPillarId.title : undefined
       if (!hash[skillName]) {
         hash[skillName] = {
           id,
-          pillar: pillarByPillarId.title,
+          pillar: pillar,
           ratings: [ratingByAcc.rating],
           count: 1
         }
