@@ -45,7 +45,6 @@ const HomepageHeading = ({ mobile, getStartedClick }) => (
         fontSize: mobile ? "2em" : "4em",
         fontWeight: "normal",
         marginBottom: 0
-        // marginTop: mobile ? "1.5em" : "3em"
       }}
     />
     <Header
@@ -302,75 +301,87 @@ const HomepageLayout = props => (
           <p>Rating System</p>
         </Divider>
         <Header as="h3" style={{ fontSize: "2em" }}>
-          Our Evaluation System
+          Pillars Of Excellence
         </Header>
         <Table color="pink">
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Value</Table.HeaderCell>
-              <Table.HeaderCell>Symbol</Table.HeaderCell>
-              <Table.HeaderCell>Level</Table.HeaderCell>
+              <Table.HeaderCell>Pillar</Table.HeaderCell>
+              <Table.HeaderCell>Examples</Table.HeaderCell>
               <Table.HeaderCell>Criteria</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
           <Table.Body>
             <Table.Row>
-              <Table.Cell textAlign="center">0</Table.Cell>
-              <Table.Cell textAlign="center">
-                <Icon name="chart pie" />
-              </Table.Cell>
-              <Table.Cell>Questioning</Table.Cell>
+              <Table.Cell>Product Sense</Table.Cell>
+
+              <Table.Cell>WireFraming, Proposals</Table.Cell>
               <Table.Cell>
-                Not sure what the skill is, or why/when it would be needed.
+                A product is a bundle of services. A team with product sense
+                understands how the product fits into its environment. Team
+                members can talk about who uses the product, why they use it,
+                and how this product fits together with all the other products
+                they use.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell textAlign="center">1</Table.Cell>
-              <Table.Cell textAlign="center">
-                <Icon name="chart pie" />
-              </Table.Cell>
-              <Table.Cell>Learning</Table.Cell>
+              <Table.Cell>Collaboration</Table.Cell>
+
+              <Table.Cell>Scrum, Pair Programming</Table.Cell>
               <Table.Cell>
-                know what the skill is, no first-hand experience
+                Teamwork is the heart of Agile software development; the
+                productivity of the team as a whole is much greater than that of
+                the individual members.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell textAlign="center">2</Table.Cell>
-              <Table.Cell textAlign="center">
-                <Icon name="chart pie" />
-              </Table.Cell>
-              <Table.Cell>Practicing</Table.Cell>
+              <Table.Cell>Business Value</Table.Cell>
+
+              <Table.Cell>Accounting, Release Management</Table.Cell>
               <Table.Cell>
-                actively using a skill at home, in a class or work environment;
-                you're here if you can reference more than one resource that
-                you've used to learn about this skill AND if you've used this in
-                the last 30 days
+                A team with a proper focus on business value has the right
+                skills to deliver a finished product in a given timeframe. It is
+                a reliable, predictable partner for the business.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell textAlign="center">3</Table.Cell>
-              <Table.Cell textAlign="center">
-                <Icon name="chart pie" />
-              </Table.Cell>
-              <Table.Cell>Journeying</Table.Cell>
+              <Table.Cell>Supportive Culture</Table.Cell>
+
+              <Table.Cell>Conflict Management, Mentoring</Table.Cell>
               <Table.Cell>
-                has used the skill in multiple environments, at least one of
-                which is work; peers recognize this person's competence; you're
-                here if peers from two different environments can vouch for you
-                AND you are practicing
+                Executives, managers, and team members acknowledge that high
+                productivity only exists in a trusting environment, where
+                learning is expected and mistakes are tolerated.
               </Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell textAlign="center">4</Table.Cell>
-              <Table.Cell textAlign="center">
-                <Icon name="chart pie" />
-              </Table.Cell>
-              <Table.Cell>Mastering</Table.Cell>
+              <Table.Cell>Confidence</Table.Cell>
+
+              <Table.Cell>Version Control, Automated Deployment</Table.Cell>
               <Table.Cell>
-                unquestioned competence in a skill, can explain underlying
-                forces to others; you've practiced this skill along side other
-                experts AND you are journeying
+                Software health and project status are readily reported in
+                transparent, unambiguous terms, often with automated reports or
+                big visible charts.
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Technical Excellence</Table.Cell>
+
+              <Table.Cell>JavaScript, TDD</Table.Cell>
+              <Table.Cell>
+                Developers make sound technical choices and take a no-compromise
+                attitude towards quality.
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Self-Improvement</Table.Cell>
+
+              <Table.Cell>Code Kata, Retrospection</Table.Cell>
+              <Table.Cell>
+                An Agile team member believes that improving oneself (in a
+                collaborative spirit) will ultimately enhance the team and the
+                product as well
               </Table.Cell>
             </Table.Row>
           </Table.Body>

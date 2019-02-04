@@ -13,7 +13,7 @@ class UserInfoForm extends React.Component {
     this.state = {
       firstName: this.props.userInfo.firstName,
       lastName: this.props.userInfo.lastName,
-      pic: this.props.userInfo.userPictureUrl,
+      // pic: this.props.userInfo.userPictureUrl,
       position: this.props.userInfo.position,
       team: this.props.userInfo.teamId,
       teamLead: this.props.userInfo.teamLead,
@@ -23,14 +23,14 @@ class UserInfoForm extends React.Component {
 
   onSubmit = event => {
     event.preventDefault()
-    const { firstName, lastName, pic, position, team, teamLead } = this.state
+    const { firstName, lastName, position, team, teamLead } = this.state
     this.props
       .mutate({
         variables: {
           id: this.props.userId,
           firstName,
           lastName,
-          userPictureUrl: pic,
+          // userPictureUrl: pic,
           position,
           teamId: team,
           teamLead
@@ -88,12 +88,12 @@ class UserInfoForm extends React.Component {
           value={this.state.lastName}
           onChange={e => this.setState({ lastName: e.target.value })}
         />
-        <Form.Input
+        {/* <Form.Input
           label="Profile Picture URL"
           placeholder="www.pictureofme.com"
           value={this.state.pic}
           onChange={e => this.setState({ pic: e.target.value })}
-        />
+        /> */}
         <Form.Input
           label="Job Title"
           placeholder="Junior Front-End Engineer"

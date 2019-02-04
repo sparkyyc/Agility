@@ -8,51 +8,6 @@ import { Label } from "semantic-ui-react"
 // otherwise height will be 0 and no chart will be rendered.
 // website examples showcase many properties, you'll often use just a few of them.
 
-// const data = [
-//   {
-//     id: "Product Sense",
-//     label: "Product Sense",
-//     value: 20,
-//     color: "hsl(271, 70%, 50%)"
-//   },
-//   {
-//     id: "Collaboration",
-//     label: "Collaboration",
-//     value: 20,
-//     color: "hsl(152, 70%, 50%)"
-//   },
-//   {
-//     id: "Focus on Business Value",
-//     label: "Focus on Business Value",
-//     value: 0,
-//     color: "hsl(300, 70%, 50%)"
-//   },
-//   {
-//     id: "Supportive Culture",
-//     label: "Supportive Culture",
-//     value: 10,
-//     color: "hsl(352, 70%, 50%)"
-//   },
-//   {
-//     id: "Confidence",
-//     label: "Confidence",
-//     value: 10,
-//     color: "hsl(118, 70%, 50%)"
-//   },
-//   {
-//     id: "Technical Excellence",
-//     label: "Technical Excellence",
-//     value: 10,
-//     color: "hsl(118, 70%, 50%)"
-//   },
-//   {
-//     id: "Self-Improvement",
-//     label: "Self-Improvement",
-//     value: 10,
-//     color: "hsl(118, 70%, 50%)"
-//   }
-// ]
-
 class PieData extends React.Component {
   hashRatings() {
     const ratingsArr = this.props.ratings.nodes
@@ -114,7 +69,6 @@ class PieData extends React.Component {
 
   render() {
     const data = this.calcData()
-    console.log(data)
     return (
       <div style={{ height: "150px", width: "150px" }}>
         <ResponsivePie
