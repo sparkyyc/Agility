@@ -34,8 +34,8 @@ export default gql`
           skillBySkillId {
             id
             skillName
+            pillarId
             pillarByPillarId {
-              id
               title
             }
           }

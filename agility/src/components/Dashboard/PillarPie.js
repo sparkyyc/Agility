@@ -8,57 +8,114 @@ import { Label } from "semantic-ui-react"
 // otherwise height will be 0 and no chart will be rendered.
 // website examples showcase many properties, you'll often use just a few of them.
 
-const data = [
-  {
-    id: "Product Sense",
-    label: "Product Sense",
-    value: 20,
-    color: "hsl(271, 70%, 50%)"
-  },
-  {
-    id: "Collaboration",
-    label: "Collaboration",
-    value: 20,
-    color: "hsl(152, 70%, 50%)"
-  },
-  {
-    id: "Focus on Business Value",
-    label: "Focus on Business Value",
-    value: 20,
-    color: "hsl(300, 70%, 50%)"
-  },
-  {
-    id: "Supportive Culture",
-    label: "Supportive Culture",
-    value: 10,
-    color: "hsl(352, 70%, 50%)"
-  },
-  {
-    id: "Confidence",
-    label: "Confidence",
-    value: 10,
-    color: "hsl(118, 70%, 50%)"
-  },
-  {
-    id: "Technical Excellence",
-    label: "Technical Excellence",
-    value: 10,
-    color: "hsl(118, 70%, 50%)"
-  },
-  {
-    id: "Self-Improvement",
-    label: "Self-Improvement",
-    value: 10,
-    color: "hsl(118, 70%, 50%)"
-  }
-]
+// const data = [
+//   {
+//     id: "Product Sense",
+//     label: "Product Sense",
+//     value: 20,
+//     color: "hsl(271, 70%, 50%)"
+//   },
+//   {
+//     id: "Collaboration",
+//     label: "Collaboration",
+//     value: 20,
+//     color: "hsl(152, 70%, 50%)"
+//   },
+//   {
+//     id: "Focus on Business Value",
+//     label: "Focus on Business Value",
+//     value: 0,
+//     color: "hsl(300, 70%, 50%)"
+//   },
+//   {
+//     id: "Supportive Culture",
+//     label: "Supportive Culture",
+//     value: 10,
+//     color: "hsl(352, 70%, 50%)"
+//   },
+//   {
+//     id: "Confidence",
+//     label: "Confidence",
+//     value: 10,
+//     color: "hsl(118, 70%, 50%)"
+//   },
+//   {
+//     id: "Technical Excellence",
+//     label: "Technical Excellence",
+//     value: 10,
+//     color: "hsl(118, 70%, 50%)"
+//   },
+//   {
+//     id: "Self-Improvement",
+//     label: "Self-Improvement",
+//     value: 10,
+//     color: "hsl(118, 70%, 50%)"
+//   }
+// ]
 
 class PieData extends React.Component {
+  hashRatings() {
+    const ratingsArr = this.props.ratings.nodes
+    let hash = {}
+    ratingsArr.forEach(ratingByAcc => {
+      let { skillName, id, pillarByPillarId } = ratingByAcc.skillBySkillId
+      if (!hash[skillName]) {
+        hash[skillName] = {
+          id,
+          pillar: pillarByPillarId.title,
+          ratings: [ratingByAcc.rating],
+          count: 1
+        }
+      } else {
+        hash[skillName].ratings.push(ratingByAcc.rating)
+        hash[skillName].count++
+      }
+    })
+    this.buildPillarArray(hash)
+    return hash
+  }
+
+  buildPillarArray(pillarCountHash) {
+    let total = 0
+    let pillarArray = []
+    for (let key in pillarCountHash) {
+      total += pillarCountHash[key].count
+    }
+
+    for (let key in pillarCountHash) {
+      pillarArray.push({
+        id: key,
+        label: key,
+        // value: (total / pillarCountHash[key].count) * 100
+        value: pillarCountHash[key].count
+      })
+      console.log(total, pillarCountHash[key].count)
+    }
+    return pillarArray
+  }
+
   calcData = () => {
-      
+    const ratingHash = this.hashRatings()
+    let hash = {}
+    Object.keys(ratingHash).forEach(skill => {
+      const { pillar } = ratingHash[skill]
+      if (pillar !== undefined) {
+        if (!hash[pillar]) {
+          hash[pillar] = {
+            count: 1
+          }
+        } else {
+          hash[pillar].count++
+        }
+      }
+    })
+    return this.buildPillarArray(hash)
   }
 
   render() {
+    console.log(this.props)
+    const data = this.calcData()
+    console.log(data)
     return (
       <div style={{ height: "150px", width: "150px" }}>
         <ResponsivePie

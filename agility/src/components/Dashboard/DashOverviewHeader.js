@@ -75,7 +75,7 @@ class DashOverviewHeader extends React.Component {
           </Item.Group>
         </Grid.Column>
         <Grid.Column width="8" verticalAlign="middle">
-          <Pie />
+          <Pie ratings={ratingsByRatingFor} />
         </Grid.Column>
       </Grid>
     )
