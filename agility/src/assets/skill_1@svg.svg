@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>skill_1@svg</title>
+    <desc>Created with Sketch.</desc>
+    <g id="skill_1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M225,225 L225,26.3732194 C120.709585,37.90194 37.90194,120.709585 26.3732194,225 C110.598518,225 125.356182,225 224.999902,225 Z" id="Oval" stroke="#E91E63" stroke-width="50" fill="#E91E63"></path>
+        <circle id="Oval" stroke="#E91E63" stroke-width="50" cx="250" cy="250" r="225"></circle>
+    </g>
+</svg>
