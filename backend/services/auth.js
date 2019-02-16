@@ -14,7 +14,7 @@ const options = {
 }
 
 passport.use(
-  new LocalStrategy(options, (email, password, done) => {
+  new LocalStrategy(options, (req, email, password, done) => {
     // check to see if the username exists
     knex("person")
       .where({ email })

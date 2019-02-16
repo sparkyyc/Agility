@@ -35,7 +35,7 @@ class TeamNeeds extends React.Component {
   renderSkillCards = () => {
     return this.props.teamInfo.teamSkillsByTeamId.nodes.map(skill => {
       return (
-        <Card key={skill.skillBySkillId.id} color={this.randomColor()}>
+        <Card key={skill.skillBySkillId.id} color={this.randomColor()} fluid>
           <Card.Content>
             <Card.Header>{skill.skillBySkillId.skillName}</Card.Header>
             <Card.Description>

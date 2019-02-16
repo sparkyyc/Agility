@@ -3,6 +3,7 @@ import { render } from "react-dom"
 import { ResponsivePie } from "@nivo/pie"
 import { linearGradientDef } from "@nivo/core"
 import { Label } from "semantic-ui-react"
+import "./Pie.css"
 
 // make sure parent container have a defined height when using responsive component,
 // otherwise height will be 0 and no chart will be rendered.

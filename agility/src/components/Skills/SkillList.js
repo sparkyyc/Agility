@@ -9,7 +9,8 @@ class SkillList extends React.Component {
 
   renderSkills = nodes => {
     return nodes.map(node => {
-      if (node.title.includes(this.state.value))
+      const title = node.title.toLowerCase()
+      if (title.includes(this.state.value))
         return (
           <Card
             fluid

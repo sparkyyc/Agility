@@ -178,7 +178,7 @@ class TeamSkills extends React.Component {
     return Object.keys(skillHash).map(skill => {
       const { id, count, avg, ratings } = skillHash[skill]
       return (
-        <Card key={id} color={this.randomColor()}>
+        <Card key={id} color={this.randomColor()} fluid>
           <Card.Content>
             <Card.Header>{skill}</Card.Header>
             <Card.Description>
