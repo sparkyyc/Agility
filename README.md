@@ -6,7 +6,9 @@
 
 ## Installation & Start
 > Need postgreSQL database named agility-dev
+
 > backend will run on localhost 4000
+
 > frontend will run on localhost 3000
 
 ```sh
@@ -42,6 +44,7 @@ npm start
 #### Skill Catalog
 
 > You can search for skills in the catalog and see their info
+
 > The edit button will only appear if you are an authorized team lead
 
 ![agilityskillslow](https://user-images.githubusercontent.com/41490508/52904705-ed03c180-31ec-11e9-8b52-41a766dae6ea.gif)
@@ -50,6 +53,7 @@ npm start
 #### Team Create/Edit
 
 > The create/edit team button will only appear if you are an authorized team lead
+
 > You can add and remove members as well as skills the team is looking for
 
 ![agilityteameditlow](https://user-images.githubusercontent.com/41490508/52904712-1ae90600-31ed-11e9-8c20-60dc855a9d57.gif)
@@ -57,7 +61,9 @@ npm start
 #### Team Overview
 
 > You can see all the skills the team has based on all the skills the members of that team has rating for
+
 > There's also a list of skills the team wants
+
 > And a list of members currently on the team
 
 ![agilityteamlow](https://user-images.githubusercontent.com/41490508/52904721-4835b400-31ed-11e9-81e9-845e192ba0d6.gif)
@@ -65,6 +71,7 @@ npm start
 #### Nav and Auth Flow
 
 > The nav bar on the left expands for clarity
+
 > The user can log out / login / or signup for an account
 
 ![agilitynavauthlow](https://user-images.githubusercontent.com/41490508/52904733-6ac7cd00-31ed-11e9-86b7-866e016ec96b.gif)
