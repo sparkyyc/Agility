@@ -76,7 +76,7 @@ npm start
 
 ![agilitynavauthlow](https://user-images.githubusercontent.com/41490508/52904733-6ac7cd00-31ed-11e9-86b7-866e016ec96b.gif)
 
-## Contact
+### Contact
 
 Christa Sparks – christa.sparks.k@gmail.com
 
