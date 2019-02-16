@@ -5,6 +5,9 @@
 ![](https://user-images.githubusercontent.com/41490508/52903793-0fdba900-31e0-11e9-8aed-8a8d1b4f402d.png)
 
 ## Installation & Start
+> Need postgreSQL database named agility-dev
+> backend will run on localhost 4000
+> frontend will run on localhost 3000
 
 ```sh
 cd Agility/backend
@@ -66,7 +69,7 @@ npm start
 
 ![agilitynavauthlow](https://user-images.githubusercontent.com/41490508/52904733-6ac7cd00-31ed-11e9-86b7-866e016ec96b.gif)
 
-## Meta
+## Contact
 
 Christa Sparks – christa.sparks.k@gmail.com
 
